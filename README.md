@@ -1,21 +1,21 @@
 # Griz Sports
 
-*** Team Leader *** 
+*** Team Leader ***
 - JD Bennett
 
-*** Frontend Developers: ***  
+*** Frontend Developers: *** 
 - Abby 
 - Jessica
 - Kaleb
 
-*** Backend Developers: *** 
+*** Backend Developers: ***
 - Logan Boyer 
 - Haiden Cramer 
 - Eric Frazer 
 - Nate Heim
 
 
-*** Testers (Handles Automated Testing): *** 
+*** Testers (Handles Automated Testing): ***
 - Nate Heim 
 - Abby
 
