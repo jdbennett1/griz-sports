@@ -1,0 +1,7 @@
+{
+  "name": "ionic-griz-sports",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
