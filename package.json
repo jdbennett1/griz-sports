@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "react-scripts": "5.0.1"
+  },
+  "dependencies": {
+    "@mobiscroll/react": "npm:@mobiscroll/react-trial@^5.33.1"
+  }
+}
