@@ -1,24 +1,51 @@
-# Griz Sports
+# GrizSports
 
-*** Team Leader ***
+## Team Members
+
+### ***Team Leader***
 - JD Bennett
 
-*** Frontend Developers: *** 
-- Abby 
+### ***Frontend Developers***
+- Abby
 - Jessica
 - Kaleb
 
-*** Backend Developers: ***
-- Logan Boyer 
-- Haiden Cramer 
-- Eric Frazer 
+### ***Backend Developers***
+- Logan Boyer
+- Haiden Cramer
+- Eric Frazer
 - Nate Heim
 
-
-*** Testers (Handles Automated Testing): ***
-- Nate Heim 
+### ***Testers (Handles Automated Testing)***
+- Nate Heim
 - Abby
 
-*** DevOps Engineer (Handles CI/CD. GitHub Actions): ***
+### ***DevOps Engineer (Handles CI/CD, GitHub Actions)***
 - JD Bennett
 - Jessica
+
+## Technologies Used
+
+- **Frontend:** React.js with Ionic
+- **Backend:** Microsoft Azure
+
+## Project Description
+
+GrizSports is a ... *(Fill in with project details)*
+
+## Installation & Setup
+
+*(Provide instructions here)*
+
+## Usage
+
+*(Describe how to use the application)*
+
+## Contributing
+
+*(Mention guidelines for contributions if any)*
+
+## License
+
+*MIT LICENSE*
+
