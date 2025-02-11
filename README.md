@@ -35,7 +35,10 @@ GrizSports is a ... *(Fill in with project details)*
 
 ## Installation & Setup
 
-*(Provide instructions here)*
+To install Ionic
+```
+    npm install -g @ionic/cli
+```
 
 ## Usage
 
