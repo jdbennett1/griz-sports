@@ -62,7 +62,7 @@ Step 5: mobiscroll config react --trial
 
 Step 6: Select CSS
 
-Step 7: Ionic Serve
+Step 7: ionic serve
 ```
 
 ### **🚀 Usage**
