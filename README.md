@@ -46,7 +46,21 @@ Install Ionic globally from the command line:
 ```
 npm install -g @ionic/cli
 ```
-(Add additional setup instructions here)
+To Build and Serve in terminal:
+cd ionic-griz-sports
+```
+ionic build
+```
+Select Y to install vite
+```
+npm install -g @mobiscroll/cli
+```
+mobiscroll config react --trial
+```
+Select CSS
+```
+Ionic Serve
+```
 
 ### **🚀 Usage**
 
