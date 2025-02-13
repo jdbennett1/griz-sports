@@ -68,7 +68,8 @@ Ionic Serve
 ### **🚀 Usage**
 
 (Provide clear steps on how to use the application, including commands or UI instructions)
-🤝 Contributing
+
+## **🤝 Contributing**
 
 (Mention guidelines for contributing, pull requests, and coding standards if any)
 ## **📜 License**
