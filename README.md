@@ -1,46 +1,46 @@
-🏆 GrizSports
+# **🏆 GrizSports**
 
 
 👥 Team Members
 ---------------------------------------------------------------------------------------------------
-👨‍💻 Team Leader
+### **👨‍💻 Team Leader**
 
     JD Bennett
 
-🎨 Frontend Developers
+### **🎨 Frontend Developers**
 
     Abby
     Jessica
     Kaleb
 
-⚙️ Backend Developers
+### **⚙️ Backend Developers**
 
     Logan Boyer
     Haiden Cramer
     Eric Frazer
     Nate Heim
 
-🛠 Testers (Automated Testing)
+### **🛠 Testers (Automated Testing)**
 
     Nate Heim
     Abby
 
-🚀 DevOps Engineer (CI/CD, GitHub Actions)
+### **🚀 DevOps Engineer (CI/CD, GitHub Actions)**
 
     JD Bennett
     Jessica
 
-🛠 Technologies Used
+## **🛠 Technologies Used**
 
     Frontend: React.js with Ionic
     Backend: Microsoft Azure
 
-📌 Project Description
+## **📌 Project Description**
 
 GrizSports is a ... (Fill in with project details)
 
 
-⚙️ Installation & Setup
+## ***⚙️ Installation & Setup**
 
 Install Ionic globally from the command line:
 ```
@@ -48,13 +48,13 @@ npm install -g @ionic/cli
 ```
 (Add additional setup instructions here)
 
-🚀 Usage
+### **🚀 Usage**
 
 (Provide clear steps on how to use the application, including commands or UI instructions)
 🤝 Contributing
 
 (Mention guidelines for contributing, pull requests, and coding standards if any)
-📜 License
+## **📜 License**
 
 This project is licensed under the MIT License.
 
