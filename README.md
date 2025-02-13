@@ -50,19 +50,19 @@ npm install -g @ionic/cli
 
 To Build and Serve in terminal:
 ```
-cd ionic-griz-sports
-```
-ionic build
-```
-Select Y to install vite
-```
-npm install -g @mobiscroll/cli
-```
-mobiscroll config react --trial
-```
-Select CSS
-```
-Ionic Serve
+Step 1: cd ionic-griz-sports
+
+Step 2: ionic build
+
+Step 3: Select Y to install vite
+
+Step 4: npm install -g @mobiscroll/cli
+
+Step 5: mobiscroll config react --trial
+
+Step 6: Select CSS
+
+Step 7: Ionic Serve
 ```
 
 ### **🚀 Usage**
