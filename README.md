@@ -43,10 +43,13 @@ GrizSports is a ... (Fill in with project details)
 ## ***⚙️ Installation & Setup**
 
 Install Ionic globally from the command line:
+
 ```
 npm install -g @ionic/cli
 ```
+
 To Build and Serve in terminal:
+```
 cd ionic-griz-sports
 ```
 ionic build
