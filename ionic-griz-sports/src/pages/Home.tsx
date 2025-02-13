@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton } from '@ionic/react';
-import './Home.css';  
-import backgroundImage from '../assets/images/washgrizstad.jpg'; 
+import './Home.css';
+import backgroundImage from '../assets/images/washgrizstad.jpg';
 
 const Home: React.FC = () => {
   return (
@@ -12,6 +12,7 @@ const Home: React.FC = () => {
           <IonButtons slot="end">
             <IonButton fill="clear" className="link">Game Schedules</IonButton>
             <IonButton fill="clear" className="link">Locations</IonButton>
+            <IonButton fill="clear" className="link" routerLink="/modal">Calendar</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
