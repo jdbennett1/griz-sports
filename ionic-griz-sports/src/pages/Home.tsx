@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton } from '@ionic/react';
 import './Home.css';
-import backgroundImage from '../assets/images/washgrizstad.jpg';
+import backgroundImage from '../assets/images/Landscape-Teams.png';
 
 const Home: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 
 .custom-header {
-    --background: #800000; 
+    --background: #70002e; 
     --color: white; 
     display: flex;
     justify-content: space-between;
@@ -32,9 +32,10 @@ ion-buttons {
 }
 
 .ion-content-background {
-    position: relative;
-    height: 100vh; 
-    background-size: cover;
+    position: fixed;
+    height: 100vh;
+    width: 100vw; 
+    background-size: 95% 95%;
     background-position: center;
     background-repeat: no-repeat;
 }
