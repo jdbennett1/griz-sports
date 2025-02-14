@@ -1,4 +1,3 @@
-import '@mobiscroll/react/dist/css/mobiscroll.min.css';
 import './Calendar.css';
 
 import {
@@ -19,15 +18,12 @@ import {
 } from '@mobiscroll/react';
 import { ChangeEvent, FC, useCallback, useMemo, useRef, useState } from 'react';
 
+setOptions({
+    theme: 'ios',
+    themeVariant: 'light',
+});
 
 const Calendar: FC = () => {
-    setOptions({
-        theme: "material",
-        themeVariant: "light",
-        colors: {
-            primary: "#ff5733",
-        },
-    });
 
     const [calEvents, setCalEvents] = useState<MbscCalendarEvent[]>([]);
     const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
@@ -122,7 +118,6 @@ const Calendar: FC = () => {
     return (
         <>
             <Eventcalendar
-                style={{ "--mbsc-primary": "#70002e" }}
                 clickToCreate={false}
                 dragToCreate={false}
                 dragToMove={false}
