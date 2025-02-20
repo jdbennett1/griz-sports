@@ -4,7 +4,8 @@ import { Redirect, Route } from 'react-router-dom';
 import Modal from './components/Modal';
 import Page from './pages/Page';
 import Home from './pages/Home';
-
+import Football from './pages/football';
+import Soccer from './pages/soccer';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -51,6 +52,12 @@ const App: React.FC = () => {
           </Route>
           <Route path="/modal" exact={true}>
             <Modal /> {/* Your Modal component */}
+          </Route>
+          <Route path="/football" exact={true}>
+            <Football /> {/* Your Football component */}
+          </Route>
+          <Route path="/soccer" exact={true}>
+            <Soccer /> {/* Your Soccer component */}
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>
