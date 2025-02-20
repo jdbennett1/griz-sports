@@ -14,6 +14,8 @@ import Mensgolf from './pages/mensgolf';
 import Womensgolf from './pages/womensgolf';
 import Track from './pages/track';
 import Login from './pages/login';
+import Locations from './pages/locations';
+import Schedules from './pages/schedules';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -49,6 +51,8 @@ import './theme/variables.css';
 
 
 
+
+
 setupIonicReact();
 
 const App: React.FC = () => {
@@ -68,6 +72,13 @@ const App: React.FC = () => {
           <Route path="/modal" exact={true}>
             <Modal /> {/* Your Modal component */}
           </Route>
+          <Route path="/loc" exact={true}>
+            <Locations/> {/* Your Modal component */}
+          </Route>
+          <Route path="/shd" exact={true}>
+            <Schedules/> {/* Your Modal component */}
+          </Route>
+          
           <Route path="/mbb" exact={true}>
             <Mensbasketball /> {/* Your Modal component */}
           </Route>

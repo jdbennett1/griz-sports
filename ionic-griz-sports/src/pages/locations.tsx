@@ -3,7 +3,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBu
 import './mensbasketball.css';
 import backgroundImage from '../assets/images/Landscape-Teams.png';
 
-const Mensbasketball: React.FC = () => {
+const Locations: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -18,18 +18,33 @@ const Mensbasketball: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <div className="ion-content-background" style={{ backgroundImage: `url(${backgroundImage})` }}>
-          <IonCard>
-          <IonCardHeader>
-        <IonCardTitle>Mens Basketball</IonCardTitle>
-        <IonCardSubtitle>2024-2025 season</IonCardSubtitle>
-      </IonCardHeader>
-      <IonCardContent>STATS</IonCardContent>
-          </IonCard>
-        </div>
+        <IonCard>
+        <IonCardHeader>
+        <IonCardTitle>Campus</IonCardTitle>
+        <IonCardSubtitle>address</IonCardSubtitle>
+        </IonCardHeader>
+        <IonCardContent>Events held at this location</IonCardContent>
+        </IonCard>
+
+        <IonCard>
+        <IonCardHeader>
+        <IonCardTitle>Dornblaser</IonCardTitle>
+        <IonCardSubtitle>address</IonCardSubtitle>
+        </IonCardHeader>
+        <IonCardContent>Events held at this location</IonCardContent>
+        </IonCard>
+
+        <IonCard>
+        <IonCardHeader>
+        <IonCardTitle>The Peak</IonCardTitle>
+        <IonCardSubtitle>address</IonCardSubtitle>
+        </IonCardHeader>
+        <IonCardContent>Events held at this location</IonCardContent>
+        </IonCard>
+
       </IonContent>
     </IonPage>
   );
 };
 
-export default Mensbasketball;
+export default Locations;

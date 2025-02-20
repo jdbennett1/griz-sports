@@ -11,8 +11,8 @@ const Womensbasketball: React.FC = () => {
           <IonTitle className="custom-title">Griz Sports</IonTitle>
           <IonButtons slot="end">
             <IonButton fill="clear" className="link" routerLink="/home">Home</IonButton>
-            <IonButton fill="clear" className="link">Game Schedules</IonButton>
-            <IonButton fill="clear" className="link">Locations</IonButton>
+            <IonButton fill="clear" className="link" routerLink="/shd">Game Schedules</IonButton>
+            <IonButton fill="clear" className="link" routerLink="/loc">Locations</IonButton>
             <IonButton fill="clear" className="link" routerLink="/modal">Calendar</IonButton>
           </IonButtons>
         </IonToolbar>
