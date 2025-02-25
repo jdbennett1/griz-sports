@@ -4,8 +4,18 @@ import { Redirect, Route } from 'react-router-dom';
 import Modal from './components/Modal';
 import Page from './pages/Page';
 import Home from './pages/Home';
+import Mensbasketball from './pages/mensbasketball';
+import Womensbasketball from './pages/womensbasketball';
+import Menstennis from './pages/menstennis';
+import Womenstennis from './pages/womenstennis';
 import Football from './pages/football';
 import Soccer from './pages/soccer';
+import Mensgolf from './pages/mensgolf';
+import Womensgolf from './pages/womensgolf';
+import Track from './pages/track';
+import Login from './pages/login';
+import Locations from './pages/locations';
+import Schedules from './pages/schedules';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -15,14 +25,14 @@ import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
-/* Optional CSS utils that can be commented out */
+/* Optional CSS utils that can be commented out 
 import '@ionic/react/css/padding.css';
 import '@ionic/react/css/float-elements.css';
 import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
-
+import '@ionic/react/css/display.css'; 
+*/
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
@@ -37,6 +47,12 @@ import '@ionic/react/css/palettes/dark.system.css';
 /* Theme variables */
 import './theme/variables.css';
 
+
+
+
+
+
+
 setupIonicReact();
 
 const App: React.FC = () => {
@@ -45,7 +61,10 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonRouterOutlet id="main">
           <Route path="/" exact={true}>
-            <Redirect to="/home" />
+            <Redirect to="/lg" />
+          </Route>
+          <Route path="/lg" exact={true}>
+            <Login/> {/* Your Modal component */}
           </Route>
           <Route path="/home" exact={true}>
             <Home /> {/* Your Home component */}
@@ -59,6 +78,44 @@ const App: React.FC = () => {
           <Route path="/soccer" exact={true}>
             <Soccer /> {/* Your Soccer component */}
           </Route>
+          <Route path="/loc" exact={true}>
+            <Locations/> {/* Your Modal component */}
+          </Route>
+          <Route path="/shd" exact={true}>
+            <Schedules/> {/* Your Modal component */}
+          </Route>
+          
+          <Route path="/mbb" exact={true}>
+            <Mensbasketball /> {/* Your Modal component */}
+          </Route>
+          <Route path="/wbb" exact={true}>
+            <Womensbasketball /> {/* Your Modal component */}
+          </Route>
+          <Route path="/mt" exact={true}>
+            <Menstennis /> {/* Your Modal component */}
+          </Route>
+          <Route path="/wt" exact={true}>
+            <Womenstennis /> {/* Your Modal component */}
+          </Route>
+          <Route path="/fb" exact={true}>
+            <Football /> {/* Your Modal component */}
+          </Route>
+          <Route path="/so" exact={true}>
+            <Soccer/> {/* Your Modal component */}
+          </Route>
+          <Route path="/mg" exact={true}>
+            <Mensgolf/> {/* Your Modal component */}
+          </Route>
+          <Route path="/wg" exact={true}>
+            <Womensgolf/> {/* Your Modal component */}
+          </Route>
+          <Route path="/tr" exact={true}>
+            <Track/> {/* Your Modal component */}
+          </Route>
+          
+          
+          
+          
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
