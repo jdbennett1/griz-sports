@@ -7,8 +7,6 @@
     align-items: center;
     padding: 0 16px; 
     height: 56px;
-
-
 }
 
 @font-face {
@@ -31,51 +29,57 @@ ion-buttons {
     align-items: center;
 }
 
-.ion-content-background {
-    position: fixed;
-    height: 100vh;
-    width: 100vw; 
+.fixed-background {
+    --ion-background-color: transparent;
+    background-image: url('../assets/images/Landscape-Teams.png');
     background-size: 95% 95%;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-
-.ion-content-background::before {
-    content: "";
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Adjust overlay opacity */
-    z-index: 1;
+    min-height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content:center;
+    text-align: center;
+  }
+
+  ion-content {
+    --padding-top: 80px;
 }
 
-
-.welcome-container {
+  .container-wrapper {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+    align-items: center; 
+    gap: 30px;
+    padding-top: 50px; 
+    padding-bottom: 50px; 
+    padding-left: -10px;
+    padding-right: -10px;
     position: relative;
+    overflow-y: auto; 
     z-index: 2;
-    color: white;
-}
+  }
 
-.welcome-title {
-    font-size: 2rem;
+.welcome-title, h2 {
+    font-size: 56px !important;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: 24px !important;
+    font-weight: normal;
     color: #ddd;  
 }
-
 
 .custom-title {
     font-family: 'VarsityTeam', sans-serif;
@@ -83,12 +87,127 @@ ion-buttons {
     text-align: left;
     width: 100%;
 }
+  
+  .upcoming-events {
+    background: rgba(0, 0, 0, 0.6); 
+    width: 100%; 
+    max-width: 1000px; 
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center; 
+    position: relative; 
+  }
+  
+  .bottom-section {
+    display: flex;
+    justify-content: space-between;
+    width: 400vw;
+    gap: 20px;
+    justify-content: center;
+  }
 
+  .calendar {
+    background: rgba(0, 0, 0, 0.6); 
+    min-width: 1000px; 
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    min-height: 1000px;
+    overflow-y: auto;
+  }
+  
+  .search-sort {
+    background: rgba(0, 0, 0, 0.6); 
+    width: 28vh; 
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+    overflow-y: auto;
+  }
 
+  .container-wrapper::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .container-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  
+  .container-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
+.event-title {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 5px;
+}
 
+.event-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    width: 100%; 
+    max-width: 400%; 
+    gap: 15px;
+    padding: 10px;
+    white-space: nowrap; 
+    scrollbar-width:auto;
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+}
 
-/* Style faux links */
+.event-list::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .event-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+  }
+
+.event-card {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    height: 400px;
+    min-width: 250px;
+    max-width: 300px; 
+    cursor: pointer; 
+    transition: transform 0.2s ease-in-out;
+    flex-shrink: 0;
+}
+
+.event-card:hover {
+    transform: scale(1.05);
+  }
+
+.no-events {
+    color: white;
+    font-style: italic;
+}
+
+  @media (max-width: 768px) {
+    .bottom-section {
+      flex-direction: column;
+    }
+    .calendar, .search-sort {
+      width: 100%;
+    }
+    .welcome-title {
+        font-size: 32px; 
+    }
+  }
+
 .link {
     color: white;
     text-transform: uppercase;
@@ -99,4 +218,5 @@ ion-buttons {
 
 .link:hover {
     color: #ffcc00;
+    transform: scale(1.05);
 }
