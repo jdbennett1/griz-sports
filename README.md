@@ -39,6 +39,8 @@
 
 GrizSports is a ... (Fill in with project details)
 
+### **CI/CD Status**
+[![CI Test Pipeline (Windows PowerShell)](https://github.com/jdbennett1/griz-sports/actions/workflows/main.yml/badge.svg)](https://github.com/jdbennett1/griz-sports/actions/workflows/main.yml)
 
 ## ***⚙️ Installation & Setup**
 
@@ -64,8 +66,7 @@ Step 6: Select CSS
 
 Step 7: ionic serve
 ```
-### **CI/CD Status**
-[![CI Test Pipeline (Windows PowerShell)](https://github.com/jdbennett1/griz-sports/actions/workflows/main.yml/badge.svg)](https://github.com/jdbennett1/griz-sports/actions/workflows/main.yml)
+
 
 ### **🚀 Usage**
 
