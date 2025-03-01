@@ -12,17 +12,6 @@ jobs:
   build:
     runs-on: windows-latest  # Use Windows as the runner
 
-    services:
-      # Set up Azure SQL Database container (using Docker on Windows)
-      azure-database:
-        image: mcr.microsoft.com/mssql/server:2019-latest
-        ports:
-          - 1433:1433
-        env:
-          SA_PASSWORD: "TestPassword123!"
-          ACCEPT_EULA: "Y"
-        options: --health-cmd "exit 0" --health-interval 10s --health-timeout 5s --health-retries 3
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -53,31 +42,27 @@ jobs:
       with:
         java-version: '11'
 
-    # Step 5: Install dependencies for Spring Boot App
+    # Step 5: Set up Azure SQL Database Connection
+    - name: Configure Azure SQL Database Connection
+      shell: pwsh
+      run: |
+        echo "Setting up Azure SQL connection..."
+        # Ensure environment variables contain the correct Azure SQL credentials
+        $env:DB_SERVER = "your-azure-sql-server.database.windows.net"
+        $env:DB_NAME = "your-database-name"
+        $env:DB_USER = "your-db-user"
+        $env:DB_PASSWORD = "your-db-password"
+
+    # Step 6: Install dependencies for Spring Boot App
     - name: Install dependencies for Spring Boot app
       shell: pwsh
       run: |
         cd springboot-app
         ./mvnw install
 
-    # Step 6: Run Spring Boot Tests
+    # Step 7: Run Spring Boot Tests
     - name: Run Spring Boot Tests
       shell: pwsh
       run: |
         cd springboot-app
         ./mvnw test
-
-    # Step 7: Deploy to Render (if all tests pass)
-    - name: Deploy to Render (if tests pass)
-      if: success()
-      shell: pwsh
-      run: |
-        curl -X POST -d "branch=main" -d "autoDeploy=true" -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" "https://api.render.com/v1/services/YOUR_SERVICE_ID/deploys"
-
-    # Step 8: Clean up Azure Database container
-    - name: Clean up Azure Database container
-      if: always()
-      shell: pwsh
-      run: |
-        docker stop azure-database
-        docker rm azure-database
