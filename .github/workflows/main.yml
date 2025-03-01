@@ -1,0 +1,83 @@
+name: CI Test Pipeline (Windows PowerShell)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest  # Use Windows as the runner
+
+    services:
+      # Set up Azure SQL Database container (using Docker on Windows)
+      azure-database:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        ports:
+          - 1433:1433
+        env:
+          SA_PASSWORD: "TestPassword123!"
+          ACCEPT_EULA: "Y"
+        options: --health-cmd "exit 0" --health-interval 10s --health-timeout 5s --health-retries 3
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Step 1: Set up Node.js (for Ionic)
+    - name: Set up Node.js (for Ionic)
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    # Step 2: Install dependencies for Ionic App
+    - name: Install dependencies for Ionic app
+      shell: pwsh
+      run: |
+        cd ionic-app
+        npm install
+
+    # Step 3: Run Ionic Tests
+    - name: Run Ionic Tests
+      shell: pwsh
+      run: |
+        cd ionic-app
+        npm run test -- --watch=false --browsers=ChromeHeadless
+
+    # Step 4: Set up Java (for Spring Boot)
+    - name: Set up Java (for Spring Boot)
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+
+    # Step 5: Install dependencies for Spring Boot App
+    - name: Install dependencies for Spring Boot app
+      shell: pwsh
+      run: |
+        cd springboot-app
+        ./mvnw install
+
+    # Step 6: Run Spring Boot Tests
+    - name: Run Spring Boot Tests
+      shell: pwsh
+      run: |
+        cd springboot-app
+        ./mvnw test
+
+    # Step 7: Deploy to Render (if all tests pass)
+    - name: Deploy to Render (if tests pass)
+      if: success()
+      shell: pwsh
+      run: |
+        curl -X POST -d "branch=main" -d "autoDeploy=true" -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" "https://api.render.com/v1/services/YOUR_SERVICE_ID/deploys"
+
+    # Step 8: Clean up Azure Database container
+    - name: Clean up Azure Database container
+      if: always()
+      shell: pwsh
+      run: |
+        docker stop azure-database
+        docker rm azure-database
