@@ -33,7 +33,7 @@ jobs:
     - name: Run Ionic Tests
       shell: pwsh
       run: |
-        cd ionic-app
+        cd ionic-griz-sports
         npm run test -- --watch=false --browsers=ChromeHeadless
 
     # Step 4: Set up Java (for Spring Boot)
