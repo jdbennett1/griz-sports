@@ -26,14 +26,14 @@ jobs:
     - name: Install dependencies for Ionic app
       shell: pwsh
       run: |
-        cd ionic-app
+        cd  ionic-griz-sports
         npm install
 
     # Step 3: Run Ionic Tests
     - name: Run Ionic Tests
       shell: pwsh
       run: |
-        cd ionic-griz-sports
+        cd  ionic-griz-sports
         npm run test -- --watch=false --browsers=ChromeHeadless
 
     # Step 4: Set up Java (for Spring Boot)
