@@ -48,10 +48,7 @@ jobs:
       run: |
         echo "Setting up Azure SQL connection..."
         # Ensure environment variables contain the correct Azure SQL credentials
-        $env:DB_SERVER = "griz-sports-server.database.windows.net"
-        $env:DB_NAME = "GrizSports"
-        $env:DB_USER = "LoganB"
-        $env:DB_PASSWORD = "@Go4Boilers"
+      
 
     # Step 6: Install dependencies for Spring Boot App
     - name: Install dependencies for Spring Boot app
