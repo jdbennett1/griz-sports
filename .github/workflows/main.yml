@@ -3,10 +3,10 @@ name: CI/CD Pipeline (Ionic + Spring Boot + Azure)
 on:
   push:
     branches:
-      - main
+      - test
   pull_request:
     branches:
-      - main
+      - test
 
 permissions:
   checks: write
