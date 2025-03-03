@@ -1,4 +1,4 @@
-name: CI Test Pipeline (Windows PowerShell)
+name: CI/CD Pipeline (Ionic + Spring Boot + Azure)
 
 on:
   push:
@@ -8,58 +8,114 @@ on:
     branches:
       - main
 
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+
 jobs:
-  build:
-    runs-on: windows-latest  # Use Windows as the runner
+  frontend-tests:
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    # Step 1: Set up Node.js (for Ionic)
-    - name: Set up Node.js (for Ionic)
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
+      # Step 1: Set up Node.js for Ionic
+      - name: Set up Node.js (for Ionic)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-    # Step 2: Install dependencies for Ionic App
-    - name: Install dependencies for Ionic app
-      shell: pwsh
-      run: |
-        cd  ionic-griz-sports
-        npm install
+      # Step 2: Install dependencies for Ionic App
+      - name: Install dependencies for Ionic app
+        shell: pwsh
+        run: |
+          cd ionic-griz-sports
+          npm ci
 
-    # Step 3: Run Ionic Tests
-    - name: Run Ionic Tests
-      shell: pwsh
-      run: |
-        cd  ionic-griz-sports
-        npm run test -- --watch=false --browsers=ChromeHeadless
+      # Step 3: Run Jest Tests for Ionic App
+      - name: Run Jest Tests
+        shell: pwsh
+        run: |
+          cd ionic-griz-sports
+          npm test -- --ci --coverage
 
-    # Step 4: Set up Java (for Spring Boot)
-    - name: Set up Java (for Spring Boot)
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
+      # Step 4: Upload Jest Coverage Report (Optional)
+      - name: Upload Jest Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jest-coverage
+          path: ionic-griz-sports/coverage/
 
-    # Step 5: Set up Azure SQL Database Connection
-    - name: Configure Azure SQL Database Connection
-      shell: pwsh
-      run: |
-        echo "Setting up Azure SQL connection..."
-        # Ensure environment variables contain the correct Azure SQL credentials
-      
+  backend-tests:
+    runs-on: windows-latest
+    needs: frontend-tests  # Ensures frontend tests pass first
 
-    # Step 6: Install dependencies for Spring Boot App
-    - name: Install dependencies for Spring Boot app
-      shell: pwsh
-      run: |
-        cd springboot-app
-        ./mvnw install
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    # Step 7: Run Spring Boot Tests
-    - name: Run Spring Boot Tests
-      shell: pwsh
-      run: |
-        cd springboot-app
-        ./mvnw test
+      # Step 5: Set up Java for Spring Boot
+      - name: Set up Java (for Spring Boot)
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Step 6: Set environment variables for Spring Boot (Using Azure SQL)
+      - name: Set environment variables for Spring Boot
+        shell: pwsh
+        env:
+          SPRING_DATASOURCE_URL: ${{ secrets.AZURE_DB_URL }}
+          SPRING_DATASOURCE_USERNAME: ${{ secrets.AZURE_DB_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.AZURE_DB_PASSWORD }}
+        run: |
+          echo "Spring Boot database environment variables set."
+
+      # Step 7: Install dependencies for Spring Boot
+      - name: Install dependencies for Spring Boot app
+        shell: pwsh
+        run: |
+          cd springboot-app
+          ./mvnw clean install
+
+      # Step 8: Run JUnit Tests for Spring Boot
+      - name: Run JUnit Tests for Spring Boot API
+        shell: pwsh
+        run: |
+          cd springboot-app
+          ./mvnw test
+
+  deploy-backend:
+    runs-on: windows-latest
+    needs: backend-tests  # Only deploy if backend tests pass
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 9: Deploy Spring Boot Backend to Azure App Service
+      - name: Deploy Spring Boot to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'griz-sports-backend'  # Replace with your Azure App Service name
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: springboot-app/target/*.jar
+
+  deploy-frontend:
+    runs-on: windows-latest
+    needs: frontend-tests  # Only deploy if frontend tests pass
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 10: Deploy Ionic Frontend to Azure Static Web Apps
+      - name: Deploy Ionic to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: 'upload'
+          app_location: 'ionic-griz-sports/dist'
+          output_location: ''
