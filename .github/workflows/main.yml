@@ -1,12 +1,11 @@
 name: CI/CD Pipeline (Ionic + Spring Boot + Azure)
 
 on:
-  push:
+  workflow_run:
+    workflows: ["CI/CD Pipeline (Ionic + Spring Boot + Azure)"]
+    types: [requested]
     branches:
-      - test
-  pull_request:
-    branches:
-      - test
+      - 'test/**'
 
 permissions:
   checks: write
