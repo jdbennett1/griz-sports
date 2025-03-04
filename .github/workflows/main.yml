@@ -39,6 +39,8 @@ jobs:
         shell: pwsh
         run: |
           cd ionic-griz-sports
+          cd scr
+          cd pages
           npm test -- --ci --coverage
 
       # Step 4: Upload Jest Coverage Report (Optional)
