@@ -6,7 +6,8 @@ import {
   IonTitle, 
   IonContent, 
   IonButtons, 
-  IonButton 
+  IonButton, 
+  IonRouterLink 
 } from '@ionic/react';
 import './Home.css';
 import EventContainer from '../components/EventContainer';
@@ -26,6 +27,11 @@ const Home: React.FC = () => {
             <IonButton fill="clear" className="link" data-testid="locations-button">
               Locations
             </IonButton>
+            <IonRouterLink routerLink="/events" className="link">
+              <IonButton fill="clear" className="link" data-testid="events-button">
+                Events
+              </IonButton>
+            </IonRouterLink>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -36,7 +42,6 @@ const Home: React.FC = () => {
 
         <div className="container-wrapper">
           <div className="upcoming-events">
-            {/*This renders a list of upcoming games */}
             <EventContainer />
           </div>
 

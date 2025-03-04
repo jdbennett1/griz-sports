@@ -67,12 +67,16 @@ ion-buttons {
     position: relative;
     overflow-y: auto; 
     z-index: 2;
+     
   }
 
 .welcome-title, h2 {
     font-size: 56px !important;
     font-weight: bold;
     margin-bottom: 5px;
+    font-family: 'VarsityTeam';
+    color: #ddd;
+    
 }
 
 .subtitle {
@@ -102,6 +106,7 @@ ion-buttons {
     align-items: center;
     text-align: center; 
     position: relative; 
+    font-family: 'VarsityTeam';
   }
   
   .bottom-section {

@@ -16,7 +16,7 @@ import Track from './pages/track';
 import Login from './pages/login';
 import Locations from './pages/locations';
 import Schedules from './pages/schedules';
-
+import Events from './pages/Events'
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -84,6 +84,8 @@ const App: React.FC = () => {
           <Route path="/shd" exact={true}>
             <Schedules/> {/* Your Modal component */}
           </Route>
+          <Route path="/events" exact={true}> <Events/></Route>
+
           
           <Route path="/mbb" exact={true}>
             <Mensbasketball /> {/* Your Modal component */}
