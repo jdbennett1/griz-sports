@@ -39,7 +39,7 @@ jobs:
         shell: pwsh
         run: |
           cd ionic-griz-sports
-          cd scr
+          cd src
           cd pages
           npm test -- --ci --coverage
 
