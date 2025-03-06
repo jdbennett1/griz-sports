@@ -14,5 +14,10 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
+    coverage: {
+      provider: 'v8', // we can use 'c8' if  it's needed
+      reporter: ['text', 'lcov'],
+      reportsDirectory: 'coverage',
+    },
   }
 })

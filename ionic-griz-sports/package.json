@@ -10,7 +10,8 @@
         "test.e2e": "cypress run",
         "test.unit": "vitest",
         "lint": "eslint",
-        "test": "jest --ci --coverage"
+        "test": "vitest",
+        "test:coverage": "vitest --coverage"
     },
     "dependencies": {
         "@capacitor/app": "7.0.0",
