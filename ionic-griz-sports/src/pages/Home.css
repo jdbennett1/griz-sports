@@ -94,7 +94,8 @@ ion-buttons {
     max-width: 1000px; 
     border-radius: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    min-height: 400px;
+    min-height: 210px;
+    max-height: 400px;
     overflow: hidden; 
     display: flex; 
     flex-direction: column;
@@ -174,14 +175,14 @@ ion-buttons {
   }
 
 .event-card {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 255);
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: left;
-    height: 400px;
-    min-width: 250px;
-    max-width: 300px; 
+    height: 200px;
+    min-width: 150px;
+    max-width: 200px; 
     cursor: pointer; 
     transition: transform 0.2s ease-in-out;
     flex-shrink: 0;
@@ -194,6 +195,25 @@ ion-buttons {
 .no-events {
     color: white;
     font-style: italic;
+}
+
+.custom-outline-button {
+  --ion-color-primary: transparent; 
+  --ion-color-primary-contrast: #70002e; 
+  border-radius: 8px;
+  border: 2px solid #70002e; 
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.custom-solid-button {
+  --background: #70002e;        
+  --ion-color-primary-contrast: #70002e; 
+  --color: white;            
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;       
 }
 
   @media (max-width: 768px) {
