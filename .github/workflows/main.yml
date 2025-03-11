@@ -39,7 +39,7 @@ jobs:
         run: |
           cd ionic-griz-sports
           npm install
-          npm build 
+          npm run build 
 
       # Step 3: Run Vitest Tests for Ionic App (Fixed)
       - name: Run Vitest Tests
