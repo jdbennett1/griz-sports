@@ -34,18 +34,18 @@ jobs:
           cd ionic-griz-sports
           npm ci
 
-      # Step 3: Run Jest Tests for Ionic App
-      - name: Run Jest Tests
+      # Step 3: Run Vitest Tests for Ionic App (Fixed)
+      - name: Run Vitest Tests
         shell: pwsh
         run: |
           cd ionic-griz-sports
-          npm test -- --ci --coverage
+          npm test -- --coverage
 
-      # Step 4: Upload Jest Coverage Report (Optional)
-      - name: Upload Jest Coverage Report
+      # Step 4: Upload Vitest Coverage Report (Updated)
+      - name: Upload Vitest Coverage Report
         uses: actions/upload-artifact@v4
         with:
-          name: jest-coverage
+          name: vitest-coverage
           path: ionic-griz-sports/coverage/
 
   backend-tests:
