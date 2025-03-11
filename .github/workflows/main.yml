@@ -33,6 +33,12 @@ jobs:
         run: |
           cd ionic-griz-sports
           npm ci
+          
+      - name: Build Grizsports
+        shell: pwsh
+        run: |
+          cd ionic-griz-sports
+          ionic build 
 
       # Step 3: Run Vitest Tests for Ionic App (Fixed)
       - name: Run Vitest Tests
