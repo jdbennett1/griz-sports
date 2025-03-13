@@ -34,6 +34,12 @@ jobs:
           cd ionic-griz-sports
           npm ci
           
+      - name: Install missing Vitest dependency
+        shell: pwsh
+        run: |
+          cd ionic-griz-sports
+          npm install -D @vitest/coverage-v8 --force
+          
       - name: Build Grizsports
         shell: pwsh
         run: |
