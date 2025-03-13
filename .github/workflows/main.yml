@@ -52,7 +52,7 @@ jobs:
         shell: pwsh
         run: |
           cd ionic-griz-sports
-          npm test -- --coverage
+          npm run test:coverage
 
       # Step 4: Upload Vitest Coverage Report (Updated)
       - name: Upload Vitest Coverage Report
