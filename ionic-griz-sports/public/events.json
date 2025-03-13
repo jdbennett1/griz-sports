@@ -1,0 +1,245 @@
+[
+    {
+        "date": "2024-10-22",
+        "time": "19:00",
+        "opponent": "Saint Martin's",
+        "location": "Missoula, MT",
+        "title": "Men's Basketball vs Saint Martin's",
+        "result": "W, 82-54",
+        "color": "#70002e"
+    },
+    {
+        "date": "2024-11-04",
+        "time": "19:00",
+        "opponent": "Hawaii Hilo",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Hawaii Hilo",
+        "result": "W, 92-61",
+        "color": "#70002e"
+    },
+    {
+        "date": "2024-11-08",
+        "time": "20:00",
+        "opponent": "Oregon",
+        "location": "Eugene, OR",
+        "title": "Mens Basketball at Oregon",
+        "result": "L, 48-79",
+        "color": "#999999"
+    },
+    {
+        "date": "2024-11-10",
+        "time": "20:00",
+        "opponent": "Northwest Indian College",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Northwest Indian College",
+        "result": "W, 94-44",
+        "color": "#70002e"
+    },
+    {
+        "date": "2024-11-13",
+        "time": "17:00",
+        "opponent": "Tennessee",
+        "location": "Knoxville, TN",
+        "title": "Mens Basketball at Tennessee",
+        "result": "L, 57-92",
+        "color": "#999999"
+    },
+    {
+        "date": "2024-11-18",
+        "time": "19:00",
+        "opponent": "Utah State",
+        "location": "Logan, UT",
+        "title": "Mens Basketball at Utah State",
+        "result": "L, 83-95",
+        "color": "#999999"
+    },
+    {
+        "date": "2024-12-10",
+        "time": "19:00",
+        "opponent": "Montana Tech",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Montana Tech",
+        "result": "W, 89-60",
+        "color": "#70002e"
+    },
+    {
+        "date": "2024-12-16",
+        "time": "18:00",
+        "opponent": "Northern Iowa",
+        "location": "Cedar Falls, IA",
+        "title": "Mens Basketball at Northern Iowa",
+        "result": "L, 76-104",
+        "color": "#999999"
+    },
+    {
+        "date": "2024-12-21",
+        "time": "16:00",
+        "opponent": "San Fransisco",
+        "location": "San Fransisco, CA",
+        "title": "Mens Basketball at San Fransisco",
+        "result": "L, 67-71",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-01-02",
+        "time": "19:00",
+        "opponent": "Eastern Washington",
+        "location": "Cheney, WA",
+        "title": "Mens Basketball at Eastern Washington",
+        "result": "W, 92-81",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-01-04",
+        "time": "15:00",
+        "opponent": "Idaho",
+        "location": "Moscow, ID",
+        "title": "Mens Basketball at Idaho",
+        "result": "W, 73-71",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-01-09",
+        "time": "19:00",
+        "opponent": "Northern Arizona",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Northern Arizona",
+        "result": "W, 81-76",
+        "color": "#70002e"
+    },
+    {
+        "date": "2025-01-11",
+        "time": "16:00",
+        "opponent": "Northern Colorado",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Northern Colorado",
+        "result": "L, 57-81",
+        "color": "#70002e"
+    },
+    {
+        "date": "2025-01-16",
+        "time": "19:00",
+        "opponent": "Weber State",
+        "location": "Ogden, UT",
+        "title": "Mens Basketball at Weber State",
+        "result": "W, 63-59",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-01-18",
+        "time": "18:00",
+        "opponent": "Idaho State",
+        "location": "Pocatello, ID",
+        "title": "Mens Basketball at Idaho State",
+        "result": "L, 61-86",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-01-20",
+        "time": "19:00",
+        "opponent": "Idaho",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Idaho",
+        "result": "W, 76-67",
+        "color": "#70002e"
+    },
+    {
+        "date": "2025-01-25",
+        "time": "19:00",
+        "opponent": "Montana State",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Montana State",
+        "result": "W, 77-70",
+        "color": "#70002e"
+    },
+    {
+        "date": "2025-01-30",
+        "time": "19:00",
+        "opponent": "Portland State",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Portland State",
+        "result": "W, 92-78",
+        "color": "#70002e"
+    },
+    {
+        "date": "2025-02-01",
+        "time": "16:00",
+        "opponent": "Sacramento State",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Sacramento State",
+        "result": "W, 87-59",
+        "color": "#70002e"
+    },
+    {
+        "date": "2025-02-06",
+        "time": "18:00",
+        "opponent": "Northern Colorado",
+        "location": "Greeley, CO",
+        "title": "Mens Basketball at Northern Colorado",
+        "result": "W, 86-78",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-02-08",
+        "time": "18:00",
+        "opponent": "Northern Arizona",
+        "location": "Flagstaff, AZ",
+        "title": "Mens Basketball at Northern Arizona",
+        "result": "W, 83-80",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-02-13",
+        "time": "19:00",
+        "opponent": "Idaho State",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Idaho State",
+        "result": "W, 81-68",
+        "color": "#70002e"
+    },
+    {
+        "date": "2025-02-15",
+        "time": "19:00",
+        "opponent": "Weber State",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Weber State",
+        "result": "W, 65-58",
+        "color": "#70002e"
+    },
+    {
+        "date": "2025-02-22",
+        "time": "19:00",
+        "opponent": "Montana State",
+        "location": "Bozeman, MT",
+        "title": "Mens Basketball at Montana State",
+        "result": "W, 89-85",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-02-27",
+        "time": "20:00",
+        "opponent": "Sacramento State",
+        "location": "Sacramento, CA",
+        "title": "Mens Basketball at Sacramento State",
+        "result": "W, 60-54",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-03-01",
+        "time": "15:00",
+        "opponent": "Portland State",
+        "location": "Portland, OR",
+        "title": "Mens Basketball at Portland State",
+        "result": "L, 76-79 (OT)",
+        "color": "#999999"
+    },
+    {
+        "date": "2025-03-03",
+        "time": "21:00",
+        "opponent": "Eastern Washington",
+        "location": "Missoula, MT",
+        "title": "Mens Basketball vs. Eastern Washington",
+        "result": "W, 83-72",
+        "color": "#70002e"
+    }
+]
