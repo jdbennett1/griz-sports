@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { 
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, 
   IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonInput, IonItem, IonList, 
@@ -8,7 +9,27 @@ import './Home.css';
 
 
 const Login: React.FC = () => {
-  const [showSignUp, setShowSignUp] = useState(false); //control modal 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleLogin = async () => {
+    if (!username || !password) {
+      setMessage("Username and password are required");
+      return;
+    }
+
+    console.log("Login button clicked");
+
+    const response = await loginUser(username, password);
+    console.log("login response:", response);
+    setMessage(response);
+
+    if (response === "Login successful!") {
+      console.log("redirecting to /Home");
+      window.location.href = "http://localhost:8100/home"; // Adjust for your domain
+    }
+  };
 
   return (
     <IonPage>
@@ -25,26 +46,26 @@ const Login: React.FC = () => {
           </IonCardHeader>
           <IonCardContent>
             <IonList>
-              <IonItem>
-                <IonInput labelPlacement="floating">
-                  <div slot="label">
-                    Email <IonText color="danger">(Required)</IonText>
+
+                <IonItem>
+                <IonInput labelPlacement="floating" value={username} onIonInput={(e) => setUsername(e.detail.value!)}>
+                <div slot="label">
+                    Username <IonText color="danger">(Required)</IonText>
+                </div>
+                </IonInput>
+                </IonItem>
+                <IonItem>
+                <IonInput type="password" labelPlacement="floating" value={password} onIonInput={(e) => setPassword(e.detail.value!)}>
+                <div slot="label">
+                Password <IonText color="danger">(Required)</IonText>
                   </div>
                 </IonInput>
-              </IonItem>
-              <IonItem>
-                <IonInput labelPlacement="floating" type="password">
-                  <div slot="label">
-                    Password <IonText color="danger">(Required)</IonText>
-                  </div>
-                </IonInput>
-              </IonItem>
-            </IonList>
-            <IonButton fill="solid" className="custom-solid-button" routerLink='/home'>Enter</IonButton>
-            <IonButton fill="outline" className="custom-outline-button" onClick={() => setShowSignUp(true)} >
-              Sign Up
-            </IonButton>
-          </IonCardContent>
+
+                </IonItem>
+             </IonList>
+             <IonButton expand="full" onClick={handleLogin}>Enter</IonButton>
+            </IonCardContent>
+
         </IonCard>
       </IonContent>
 
