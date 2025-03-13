@@ -1,10 +1,15 @@
 {
   "devDependencies": {
+<<<<<<< Updated upstream
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "jsdom": "^26.0.0",
     "react-scripts": "5.0.1",
     "vitest": "^3.0.7"
+=======
+    "@vitest/coverage-v8": "^3.0.8",
+    "react-scripts": "5.0.1"
+>>>>>>> Stashed changes
   },
   "dependencies": {
     "@mobiscroll/react": "npm:@mobiscroll/react-trial@^5.33.1"
