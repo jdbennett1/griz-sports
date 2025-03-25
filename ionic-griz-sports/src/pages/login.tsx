@@ -6,12 +6,15 @@ import {
   IonText, IonModal, IonLabel 
 } from '@ionic/react';
 import './Home.css';
+import { loginUser } from '../services/apiService';
 
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [showSignUp, setShowSignUp] = useState(false); //control modal
+
 
   const handleLogin = async () => {
     if (!username || !password) {
@@ -63,7 +66,10 @@ const Login: React.FC = () => {
 
                 </IonItem>
              </IonList>
-             <IonButton expand="full" onClick={handleLogin}>Enter</IonButton>
+             <IonButton expand="full" fill="solid" className="custom-solid-button" onClick={handleLogin}>Enter</IonButton>
+             <IonButton fill="outline" className="custom-outline-button" onClick={() => setShowSignUp(true)} >
+              Sign Up
+            </IonButton>
             </IonCardContent>
 
         </IonCard>
