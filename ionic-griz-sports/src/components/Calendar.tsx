@@ -7,7 +7,6 @@ import {
     CalendarToday,
     Eventcalendar,
     formatDate,
-    getJson,
     Input,
     MbscCalendarEvent,
     MbscEventcalendarView,
@@ -23,34 +22,43 @@ setOptions({
     themeVariant: 'light',
 });
 
+
+
 const Calendar: FC = () => {
 
     const [calEvents, setCalEvents] = useState<MbscCalendarEvent[]>([]);
     const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
     const [listEvents, setListEvents] = useState<MbscCalendarEvent[]>([]);
-    const [searchInput, setSearchInput] = useState<HTMLElement>();
+    const [searchInput, setSearchInput] = useState<HTMLInputElement>();
     const [selectedEvent, setSelectedEvent] = useState<MbscCalendarEvent[]>([]);
+
+
+
 
     const calInst = useRef<Eventcalendar | null>(null);
     const timer = useRef<ReturnType<typeof setTimeout>>();
 
-    const calView = useMemo<MbscEventcalendarView>(() => ({ calendar: { labels: true } }), []);
+    const calView = useMemo<MbscEventcalendarView>(() => ({ calendar: { labels: true, popover: true } }), []);
     const listView = useMemo<MbscEventcalendarView>(() => ({ agenda: { type: 'year', size: 5 } }), []);
+
+    const fetchEvents = async (url: string) => {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data as MbscCalendarEvent[];
+    };
 
     const handleInputChange = useCallback((ev: ChangeEvent<HTMLInputElement>) => {
         const searchText = ev.target.value;
 
         clearTimeout(timer.current);
-        timer.current = setTimeout(() => {
+        timer.current = setTimeout(async () => {
             if (searchText.length > 0) {
-                getJson(
-                    'https://trial.mobiscroll.com/searchevents/?text=' + searchText,
-                    (data: MbscCalendarEvent[]) => {
-                        setListEvents(data);
-                        setPopupOpen(true);
-                    },
-                    'jsonp',
+                const data = await fetchEvents('/events.json');
+                const filteredEvents = data.filter((event: MbscCalendarEvent) =>
+                    event.text && event.text.toLowerCase().includes(searchText.toLowerCase())
                 );
+                setListEvents(filteredEvents);
+                setPopupOpen(true);
             } else {
                 setPopupOpen(false);
             }
@@ -64,17 +72,16 @@ const Calendar: FC = () => {
     }, []);
 
     const handlePageLoading = useCallback((args: MbscPageLoadingEvent) => {
-        const start = formatDate('YYYY-MM-DD', args.viewStart!);
-        const end = formatDate('YYYY-MM-DD', args.viewEnd!);
+        formatDate('YYYY-MM-DD', args.viewStart!);
+        formatDate('YYYY-MM-DD', args.viewEnd!);
 
         setTimeout(() => {
-            getJson(
-                'https://trial.mobiscroll.com/searchevents/?start=' + start + '&end=' + end,
-                (data: MbscCalendarEvent[]) => {
+            fetch('events.json')
+                .then(response => response.json())
+                .then((data: MbscCalendarEvent[]) => {
                     setCalEvents(data);
-                },
-                'jsonp',
-            );
+                })
+                .catch(error => console.error('Error fetching events:', error));
         });
     }, []);
 
@@ -89,7 +96,7 @@ const Calendar: FC = () => {
     }, []);
 
     const searchInputRef = useCallback((input: Input) => {
-        setSearchInput(input && input.nativeElement);
+        setSearchInput(input && (input.nativeElement as HTMLInputElement));
     }, []);
 
     const customHeader = useCallback(
@@ -122,7 +129,7 @@ const Calendar: FC = () => {
                 dragToCreate={false}
                 dragToMove={false}
                 dragToResize={false}
-                //data={calEvents}   change this to add our own events
+                data={calEvents}
                 ref={calInst}
                 renderHeader={customHeader}
                 selectedEvents={selectedEvent}
@@ -131,7 +138,7 @@ const Calendar: FC = () => {
                 onPageLoading={handlePageLoading}
             />
             <Popup
-                anchor={searchInput}
+                anchor={searchInput ?? undefined}
                 contentPadding={false}
                 display="anchored"
                 focusElm={searchInput}

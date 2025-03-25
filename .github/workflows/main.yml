@@ -33,13 +33,26 @@ jobs:
         run: |
           cd ionic-griz-sports
           npm ci
+          
+      - name: Install missing Vitest dependency
+        shell: pwsh
+        run: |
+          cd ionic-griz-sports
+          npm install -D @vitest/coverage-v8 --force
+          
+      - name: Build Grizsports
+        shell: pwsh
+        run: |
+          cd ionic-griz-sports
+          npm install
+          npm run build 
 
       # Step 3: Run Vitest Tests for Ionic App (Fixed)
       - name: Run Vitest Tests
         shell: pwsh
         run: |
           cd ionic-griz-sports
-          npm test -- --coverage
+          npm run test:coverage
 
       # Step 4: Upload Vitest Coverage Report (Updated)
       - name: Upload Vitest Coverage Report
