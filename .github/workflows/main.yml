@@ -52,7 +52,9 @@ jobs:
         shell: pwsh
         run: |
           cd ionic-griz-sports
-          npm run test:coverage
+          npm run test:coverage -- --max-workers=4 
+        # use "-- --max-workers=4" to run tests in multiple threads instead of sequentially  which is a built-in parallelization feature
+          
 
       # Step 4: Upload Vitest Coverage Report (Updated)
       - name: Upload Vitest Coverage Report
@@ -63,7 +65,7 @@ jobs:
 
   backend-tests:
     runs-on: windows-latest
-    needs: frontend-tests  # Ensures frontend tests pass first
+    # needs: frontend-tests  # Ensures frontend tests pass first ------removed so that backend runs parallel with frontend
 
     steps:
       - name: Checkout code
@@ -98,11 +100,13 @@ jobs:
         shell: pwsh
         run: |
           cd springboot-app
-          ./mvnw test
+          ./mvnw test -Dparallel=methods -DthreadCount=4
+        # use "-Dparallel=methods -DthreadCount=4" to run tests in multiple threads for faster execution
 
   deploy-backend:
     runs-on: windows-latest
-    needs: backend-tests  # Only deploy if backend tests pass
+    needs: [frontend-tests, backend-tests]  # Only deploy if backend tests pass  
+    # use "[frontend-tests, ] added to backend-tests to ensure both tests pass before deploying
 
     steps:
       - name: Checkout code
@@ -118,7 +122,8 @@ jobs:
 
   deploy-frontend:
     runs-on: windows-latest
-    needs: frontend-tests  # Only deploy if frontend tests pass
+    needs: [frontend-tests, backend-tests]  # Only deploy if frontend tests pass
+    # use "[ , backend-tests] added to frontend-tests to ensure both tests pass before deploying
 
     steps:
       - name: Checkout code
