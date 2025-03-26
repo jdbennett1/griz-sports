@@ -6,26 +6,35 @@
 /dev-ops/ @jdbennett1 @jnelson544
 
 # API Development - Owned by Backend Developers  
-/backend/ @backend-dev @devops-team  
+/backend/ @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim
+/dev-ops/ @jdbennett1 @jnelson544
 
 # Database Development - Owned by Backend Developers  
-/database/ @backend-dev @devops-team  
+/database/ @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim 
+/dev-ops/ @jdbennett1 @jnelson544
 
 # Testing - Assigned to Testers  
-/tests/ @testers @devops-team  
+/tests/ @Nate-Heim @haidencramer
+/dev-ops/ @jdbennett1 @jnelson544
 
 # CI/CD Workflows - Owned by DevOps  
-.github/workflows/ @devops-team  @testers
+.github/workflows/
+/dev-ops/ @jdbennett1 @jnelson544
 
 # Deployment - DevOps and Team Lead  
-/deployment/ @devops-team @team-lead  
+/deployment/  @jdbennett1 @jnelson544
+/team-lead/ @jdbennett1  
 
 # General Documentation - All teams involved  
-/docs/ @frontend-dev @backend-dev @testers @team-lead  
+/docs/ 
+/frontend/ @jnelson544 @abby-kabalin @kalebclemow
+/backend/ @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim
+/tests/ @Nate-Heim @haidencramer
+/team-lead/ @jdbennett1  
 
 # Package Management (dependencies) - Managed by Frontend and Backend  
-package.json @frontend-dev  
-pom.xml @backend-dev  
+package.json /frontend/ @jnelson544 @abby-kabalin @kalebclemow  
+pom.xml /backend/ @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim 
 
 # README and Critical Docs - Owned by Team Lead  
-README.md @team-lead 
+README.md /dev-ops/ @jdbennett1 @jnelson544
