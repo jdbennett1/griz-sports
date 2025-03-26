@@ -33,8 +33,8 @@
 /team-lead/ @jdbennett1  
 
 # Package Management (dependencies) - Managed by Frontend and Backend  
-package.json /frontend/ @jnelson544 @abby-kabalin @kalebclemow  
-pom.xml /backend/ @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim 
+package.json @jnelson544 @abby-kabalin @kalebclemow  
+pom.xml @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim 
 
-# README and Critical Docs - Owned by Team Lead  
-README.md /dev-ops/ @jdbennett1 @jnelson544
+# README and Critical Docs - Owned by Dev Ops
+README.md @jdbennett1 @jnelson544
