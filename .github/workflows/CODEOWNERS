@@ -1,0 +1,30 @@
+# Owners for all changes  
+* @team-lead @devops-team  
+
+# UI Design - Owned by Frontend Developers  
+/frontend/ @frontend-dev @devops-team  
+
+# API Development - Owned by Backend Developers  
+/backend/ @backend-dev @devops-team  
+
+# Database Development - Owned by Backend Developers  
+/database/ @backend-dev @devops-team  
+
+# Testing - Assigned to Testers  
+/tests/ @testers @devops-team  
+
+# CI/CD Workflows - Owned by DevOps  
+.github/workflows/ @devops-team  @testers
+
+# Deployment - DevOps and Team Lead  
+/deployment/ @devops-team @team-lead  
+
+# General Documentation - All teams involved  
+/docs/ @frontend-dev @backend-dev @testers @team-lead  
+
+# Package Management (dependencies) - Managed by Frontend and Backend  
+package.json @frontend-dev  
+pom.xml @backend-dev  
+
+# README and Critical Docs - Owned by Team Lead  
+README.md @team-lead 
