@@ -1,8 +1,9 @@
 # Owners for all changes  
-* @team-lead @devops-team  
+* @jdbennett1 @jnelson544  
 
 # UI Design - Owned by Frontend Developers  
-/frontend/ @frontend-dev @devops-team  
+/frontend/ @jnelson544 @abby-kabalin @kalebclemow 
+/dev-ops/ @jdbennett1 @jnelson544
 
 # API Development - Owned by Backend Developers  
 /backend/ @backend-dev @devops-team  
