@@ -4,7 +4,7 @@ import Calendar from "../components/Calendar";
 import {describe, it, expect} from 'vitest'
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
-
+// Tests for the calendar page
 vi.mock('../components/Calendar', () => ({
   default: () => <div data-testid="calendar">Mock Calendar</div>,
 }));
