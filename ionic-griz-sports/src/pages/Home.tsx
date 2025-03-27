@@ -27,11 +27,7 @@ const Home: React.FC = () => {
             <IonButton fill="clear" className="link" data-testid="locations-button">
               Parking
             </IonButton>
-            <IonRouterLink routerLink="/events" className="link">
-              <IonButton fill="clear" className="link" data-testid="events-button">
-                Events
-              </IonButton>
-            </IonRouterLink>
+            
           </IonButtons>
         </IonToolbar>
       </IonHeader>

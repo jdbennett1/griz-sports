@@ -108,14 +108,16 @@ ion-buttons {
     text-align: center; 
     position: relative; 
     font-family: 'VarsityTeam';
+    margin: 0 auto;
   }
   
   .bottom-section {
     display: flex;
     justify-content: space-between;
-    width: 400vw;
+    
     gap: 20px;
     justify-content: center;
+    margin: 0 auto;
   }
 
   .calendar {

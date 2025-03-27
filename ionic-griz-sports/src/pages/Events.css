@@ -28,7 +28,7 @@ ion-buttons {
     align-items: center;
 }
 
-.fixed-background {
+.fixed-background-events {
     --ion-background-color: transparent;
     background-image: url('../assets/images/Landscape-Teams.png');
     background-size: 95% 95%;
@@ -46,7 +46,7 @@ ion-buttons {
     text-align: center;
   }
   
-.fixed-background::before {
+.fixed-background-events::before {
     content: "";
     position: absolute;
     top: 0;
@@ -58,7 +58,7 @@ ion-buttons {
 }
 
 
-.fixed-background > * {
+.fixed-background-events > * {
     position: relative;
     z-index: 1;
 }
@@ -106,7 +106,7 @@ ion-buttons {
     text-align: left;
     width: 100%;
 }
-.events-grid {
+.events1-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px; 
@@ -118,19 +118,45 @@ ion-buttons {
 }
 
 
-.event-card {
+.event1-card {
     background-color: rgba(255, 255, 255, 0.2);
     border: 2px solid #ddd; 
     color: white;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+    height: 400px;
     padding: 40px;
     border-radius: 10px;
     backdrop-filter: blur(10px); 
     transition: transform 0.2s ease-in-out;
 }
 
-.event-card:hover {
-    transform: scale(1.05); /* Slight enlarge effect on hover */
+.event1-card:hover {
+    transform: scale(1.05); 
 }
+
+.event-subheading {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #ffffff; 
+  }
+
+  .parking-container {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    text-align: center;
+    font-style: italic;
+    color: #555;
+  
+    width: 100%;         
+    max-width: 600px;    
+    height: 250px;       
+    margin-left: auto;   
+    margin-right: auto;
+  }
+  
