@@ -66,6 +66,9 @@ Step 6: Select CSS
 
 Step 7: ionic serve
 ```
+
+### **🚀 Usage**
+
 To Access local hosted site:
 ```
 Step 1: cd griz-sports
@@ -74,10 +77,6 @@ Step 3: ionic build
 Step 4: ionic serve
 Step 5: From Hosted site - Enter log in information provided by the backend team.
 ```
-
-### **🚀 Usage**
-
-(Provide clear steps on how to use the application, including commands or UI instructions)
 
 ## **🤝 Contributing**
 
