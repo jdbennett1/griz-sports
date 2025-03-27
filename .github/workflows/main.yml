@@ -62,6 +62,7 @@ jobs:
         with:
           name: vitest-coverage
           path: ionic-griz-sports/coverage/
+          
 
   backend-tests:
     runs-on: windows-latest
@@ -102,6 +103,12 @@ jobs:
           cd springboot-app
           ./mvnw test -Dparallel=methods -DthreadCount=4
         # use "-Dparallel=methods -DthreadCount=4" to run tests in multiple threads for faster execution
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            Hello world ! :wave:
 
   deploy-backend:
     runs-on: windows-latest
