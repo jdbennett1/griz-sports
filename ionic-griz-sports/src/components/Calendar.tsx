@@ -41,19 +41,24 @@ const Calendar: FC = () => {
     const calView = useMemo<MbscEventcalendarView>(() => ({ calendar: { labels: true, popover: true } }), []);
     const listView = useMemo<MbscEventcalendarView>(() => ({ agenda: { type: 'year', size: 5 } }), []);
 
-    const fetchEvents = async (url: string) => {
-        const response = await fetch(url);
-        const data = await response.json();
-        return data as MbscCalendarEvent[];
+    const fetchEvents = async (url: string): Promise<MbscCalendarEvent[]> => {
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data as MbscCalendarEvent[];
+        } catch (error) {
+            console.error("Error fetching events:", error);
+            return [];
+        }
     };
 
     const handleInputChange = useCallback((ev: ChangeEvent<HTMLInputElement>) => {
         const searchText = ev.target.value;
-
+    
         clearTimeout(timer.current);
         timer.current = setTimeout(async () => {
             if (searchText.length > 0) {
-                const data = await fetchEvents('/events.json');
+                const data = await fetchEvents("/events.json"); 
                 const filteredEvents = data.filter((event: MbscCalendarEvent) =>
                     event.text && event.text.toLowerCase().includes(searchText.toLowerCase())
                 );
@@ -71,18 +76,12 @@ const Calendar: FC = () => {
         }
     }, []);
 
-    const handlePageLoading = useCallback((args: MbscPageLoadingEvent) => {
-        formatDate('YYYY-MM-DD', args.viewStart!);
-        formatDate('YYYY-MM-DD', args.viewEnd!);
-
-        setTimeout(() => {
-            fetch('events.json')
-                .then(response => response.json())
-                .then((data: MbscCalendarEvent[]) => {
-                    setCalEvents(data);
-                })
-                .catch(error => console.error('Error fetching events:', error));
-        });
+    const handlePageLoading = useCallback(async (args: MbscPageLoadingEvent) => {
+        formatDate("YYYY-MM-DD", args.viewStart!);
+        formatDate("YYYY-MM-DD", args.viewEnd!);
+    
+        const data = await fetchEvents("/events.json"); 
+        setCalEvents(data);
     }, []);
 
     const handlePopupClose = useCallback(() => {
