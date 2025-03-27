@@ -119,7 +119,8 @@ const Login: React.FC = () => {
               </IonItem>
             </IonList>
             {message && <IonText color="danger">{message}</IonText>}
-            <IonButton expand="full" fill="solid" className="custom-solid-button" onClick={handleLogin}>Enter</IonButton>
+            <br></br>
+            <IonButton fill="solid" className="custom-solid-button" onClick={handleLogin}>Enter</IonButton>
             <IonButton fill="outline" className="custom-outline-button" onClick={() => setShowSignUp(true)}>
               Sign Up
             </IonButton>
