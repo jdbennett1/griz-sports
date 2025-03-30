@@ -1,0 +1,40 @@
+# Owners for all changes  
+* @jdbennett1 @jnelson544  
+
+# UI Design - Owned by Frontend Developers  
+/frontend/ @jnelson544 @abby-kabalin @kalebclemow 
+/dev-ops/ @jdbennett1 @jnelson544
+
+# API Development - Owned by Backend Developers  
+/backend/ @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim
+/dev-ops/ @jdbennett1 @jnelson544
+
+# Database Development - Owned by Backend Developers  
+/database/ @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim 
+/dev-ops/ @jdbennett1 @jnelson544
+
+# Testing - Assigned to Testers  
+/tests/ @Nate-Heim @haidencramer
+/dev-ops/ @jdbennett1 @jnelson544
+
+# CI/CD Workflows - Owned by DevOps  
+.github/workflows/
+/dev-ops/ @jdbennett1 @jnelson544
+
+# Deployment - DevOps and Team Lead  
+/deployment/  @jdbennett1 @jnelson544
+/team-lead/ @jdbennett1  
+
+# General Documentation - All teams involved  
+/docs/ 
+/frontend/ @jnelson544 @abby-kabalin @kalebclemow
+/backend/ @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim
+/tests/ @Nate-Heim @haidencramer
+/team-lead/ @jdbennett1  
+
+# Package Management (dependencies) - Managed by Frontend and Backend  
+package.json @jnelson544 @abby-kabalin @kalebclemow  
+pom.xml @haidencramer @Boiler8 @EricFrazer44 @Nate-Heim 
+
+# README and Critical Docs - Owned by Dev Ops
+README.md @jdbennett1 @jnelson544
