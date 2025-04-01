@@ -5576,6 +5576,21 @@
     margin-top: -.0625em
 }
 
+/* Change text color to #70002e */
+.mbsc-calendar-day {
+    color: #70002e !important;
+}
+
+.mbsc-calendar-day.mbsc-selected {
+    background-color: #d4d4d4 !important;
+    color: white !important;
+}
+
+/* Set background color for today’s date */
+.mbsc-calendar-day.mbsc-today {
+    color: #70002e !important;
+}
+
 .mbsc-ios.mbsc-calendar-mark {
     border-radius: .375em;
     height: .375em;

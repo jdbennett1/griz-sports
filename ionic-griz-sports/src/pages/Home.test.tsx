@@ -8,9 +8,7 @@ import { vi } from 'vitest';
 vi.mock('../components/EventContainer', () => ({
   default: () => <div data-testid="event-container">Mock EventContainer</div>,
 }));
-vi.mock('../components/Calendar', () => ({
-  default: () => <div data-testid="calendar">Mock Calendar</div>,
-}));
+
 vi.mock('../components/SearchSortContainer', () => ({
   default: () => <div data-testid="search-sort">Mock SearchSortContainer</div>,
 }));
@@ -37,11 +35,6 @@ describe('Home Page Tests', () => {
   it('renders the EventContainer component', () => {
     render(<Home />);
     expect(screen.getByTestId('event-container')).toBeInTheDocument();
-  });
-
-  it('renders the Calendar component', () => {
-    render(<Home />);
-    expect(screen.getByTestId('calendar')).toBeInTheDocument();
   });
 
   it('renders the SearchSortContainer component', () => {

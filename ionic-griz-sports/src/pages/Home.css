@@ -54,7 +54,7 @@ ion-buttons {
   .container-wrapper {
     margin: 0 auto;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1000px;
     height: auto;
     display: flex;
     flex-direction: column;

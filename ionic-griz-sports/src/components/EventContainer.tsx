@@ -33,6 +33,7 @@ const EventContainer: React.FC = () => {
             style={{ textDecoration: 'none' }} 
           >
             <IonCard className="event-card">
+
               <IonCardHeader>
                 <IonCardTitle>{event.title}</IonCardTitle>
               </IonCardHeader>

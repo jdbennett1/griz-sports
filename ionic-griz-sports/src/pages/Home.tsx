@@ -16,7 +16,7 @@ import SearchSortContainer from '../components/SearchSortContainer';
 
 const Home: React.FC = () => {
   return (
-    <IonPage>
+    <IonPage style={{ position: 'fixed' }}>
       <IonHeader>
         <IonToolbar className="custom-header">
           <IonTitle className="custom-title">Griz Sports</IonTitle>
@@ -31,7 +31,7 @@ const Home: React.FC = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      
+
       <IonContent className="fixed-background">
         <h2 className="welcome-title">Welcome to Griz Sports!</h2>
         <p className="subtitle">Your hub for game schedules and locations</p>
