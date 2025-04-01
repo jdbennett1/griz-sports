@@ -1,12 +1,13 @@
 import React from 'react';
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonButtons,
-  IonButton
+import { 
+  IonPage, 
+  IonHeader, 
+  IonToolbar, 
+  IonTitle, 
+  IonContent, 
+  IonButtons, 
+  IonButton, 
+  IonRouterLink 
 } from '@ionic/react';
 import './Home.css';
 import EventContainer from '../components/EventContainer';
@@ -26,6 +27,7 @@ const Home: React.FC = () => {
             <IonButton fill="clear" className="link" data-testid="locations-button">
               Parking
             </IonButton>
+            
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -36,7 +38,6 @@ const Home: React.FC = () => {
 
         <div className="container-wrapper">
           <div className="upcoming-events">
-            {/*This renders a list of upcoming games */}
             <EventContainer />
           </div>
 

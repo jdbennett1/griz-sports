@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
-import './mensbasketball.css';
+
 import backgroundImage from '../assets/images/Landscape-Teams.png';
 
 const Locations: React.FC = () => {
