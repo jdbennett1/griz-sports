@@ -14,6 +14,7 @@ import EventContainer from '../components/EventContainer';
 import Calendar from '../components/Calendar';
 import SearchSortContainer from '../components/SearchSortContainer';
 
+
 const Home: React.FC = () => {
   return (
     <IonPage style={{ position: 'fixed' }}>
@@ -24,8 +25,7 @@ const Home: React.FC = () => {
             <IonButton fill="clear" className="link" data-testid="game-schedules-button">
               Game Schedules
             </IonButton>
-            <IonButton fill="clear" className="link" data-testid="locations-button">
-              Parking
+            <IonButton routerLink="/parking">Parking
             </IonButton>
             
           </IonButtons>

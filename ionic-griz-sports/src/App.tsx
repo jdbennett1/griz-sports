@@ -4,6 +4,7 @@ import { Redirect, Route } from 'react-router-dom';
 import Modal from './components/Modal';
 import Page from './pages/Page';
 import Home from './pages/Home';
+import Parking from './pages/parking';
 
 
 
@@ -68,7 +69,7 @@ const App: React.FC = () => {
             <Modal /> {/* Your Modal component */}
           </Route>
           
-          
+          <Route path="/parking" exact={true}> <Parking/></Route>
           
           <Route path="/loc" exact={true}>
             <Locations/> {/* Your Modal component */}
