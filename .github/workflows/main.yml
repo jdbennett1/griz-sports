@@ -33,24 +33,39 @@ jobs:
         run: |
           cd ionic-griz-sports
           npm ci
-
-      # Step 3: Run Jest Tests for Ionic App
-      - name: Run Jest Tests
+          
+      - name: Install missing Vitest dependency
         shell: pwsh
         run: |
           cd ionic-griz-sports
-          npm test -- --ci --coverage
+          npm install -D @vitest/coverage-v8 --force
+          
+      - name: Build Grizsports
+        shell: pwsh
+        run: |
+          cd ionic-griz-sports
+          npm install
+          npm run build 
 
-      # Step 4: Upload Jest Coverage Report (Optional)
-      - name: Upload Jest Coverage Report
+      # Step 3: Run Vitest Tests for Ionic App (Fixed)
+      - name: Run Vitest Tests
+        shell: pwsh
+        run: |
+          cd ionic-griz-sports
+          npm run test:coverage -- --max-workers=4 
+        # use "-- --max-workers=4" to run tests in multiple threads instead of sequentially  which is a built-in parallelization feature
+          
+
+      # Step 4: Upload Vitest Coverage Report (Updated)
+      - name: Upload Vitest Coverage Report
         uses: actions/upload-artifact@v4
         with:
-          name: jest-coverage
+          name: vitest-coverage
           path: ionic-griz-sports/coverage/
 
   backend-tests:
     runs-on: windows-latest
-    needs: frontend-tests  # Ensures frontend tests pass first
+    # needs: frontend-tests  # Ensures frontend tests pass first ------removed so that backend runs parallel with frontend
 
     steps:
       - name: Checkout code
@@ -85,11 +100,13 @@ jobs:
         shell: pwsh
         run: |
           cd springboot-app
-          ./mvnw test
+          ./mvnw test -Dparallel=methods -DthreadCount=4
+        # use "-Dparallel=methods -DthreadCount=4" to run tests in multiple threads for faster execution
 
   deploy-backend:
     runs-on: windows-latest
-    needs: backend-tests  # Only deploy if backend tests pass
+    needs: [frontend-tests, backend-tests]  # Only deploy if backend tests pass  
+    # use "[frontend-tests, ] added to backend-tests to ensure both tests pass before deploying
 
     steps:
       - name: Checkout code
@@ -105,7 +122,8 @@ jobs:
 
   deploy-frontend:
     runs-on: windows-latest
-    needs: frontend-tests  # Only deploy if frontend tests pass
+    needs: [frontend-tests, backend-tests]  # Only deploy if frontend tests pass
+    # use "[ , backend-tests] added to frontend-tests to ensure both tests pass before deploying
 
     steps:
       - name: Checkout code
