@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Eventcalendar, MbscEvent, MbscCalendarEvent, setOptions } from "@mobiscroll/react";
 import { loadPublicCalendarEvents } from "../services/googleCalendarService";
-import "../components/Calendar.css"; // Import your CSS file for styling
+import "./Calendar.css"; // Import your CSS file for styling
 
 setOptions({
     theme: "ios",

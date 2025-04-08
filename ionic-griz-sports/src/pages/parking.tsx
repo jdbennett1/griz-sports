@@ -1,25 +1,9 @@
 import React from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonButtons,
-  IonButton
-} from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton } from '@ionic/react';
 import './parking.css';
-
-interface Event {
-  id: number;
-  title: string;
-  time: string;
-  location: string;
-}
+import MapComponent from '../components/MapComponent'; // Adjust import path
 
 const parkingPage: React.FC = () => {
-  
   return (
     <IonPage>
       <IonHeader>
@@ -32,18 +16,14 @@ const parkingPage: React.FC = () => {
       </IonHeader>
 
       <IonContent className="fixed-background-park">
-        
-            <h2> Parking</h2>
-            
+        <h2>Parking</h2>
 
-            {/* Location Container Placeholder */}
-            <div className="parking-container">
-              <p>Location Container (Park API)</p>
-            </div>
+        <div className="parking-container">
           
-        ) : (
+          {/* This will render the MapComponent */}
+          <MapComponent />
           
-        )
+        </div>
       </IonContent>
     </IonPage>
   );
