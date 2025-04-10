@@ -1,0 +1,44 @@
+[debug] [2025-04-09T06:09:46.687Z] ----------------------------------------------------------------------
+[debug] [2025-04-09T06:09:46.690Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\benne\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2025-04-09T06:09:46.690Z] CLI Version:   14.1.0
+[debug] [2025-04-09T06:09:46.690Z] Platform:      win32
+[debug] [2025-04-09T06:09:46.690Z] Node Version:  v22.14.0
+[debug] [2025-04-09T06:09:46.690Z] Time:          Wed Apr 09 2025 00:09:46 GMT-0600 (Mountain Daylight Time)
+[debug] [2025-04-09T06:09:46.690Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-09T06:09:46.863Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-09T06:09:46.864Z] > authorizing via signed-in user (bennett.jdizzle4@gmail.com)
+[debug] [2025-04-09T06:09:46.864Z] [iam] checking project griz-sports for permissions ["firebase.projects.get"]
+[debug] [2025-04-09T06:09:46.864Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:46.865Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:46.865Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/griz-sports:testIamPermissions [none]
+[debug] [2025-04-09T06:09:46.865Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/griz-sports:testIamPermissions x-goog-quota-user=projects/griz-sports
+[debug] [2025-04-09T06:09:46.865Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/griz-sports:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-04-09T06:09:46.991Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/griz-sports:testIamPermissions 200
+[debug] [2025-04-09T06:09:46.991Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/griz-sports:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-04-09T06:09:46.991Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:46.991Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:46.991Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/griz-sports [none]
+[debug] [2025-04-09T06:09:47.152Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/griz-sports 200
+[debug] [2025-04-09T06:09:47.152Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/griz-sports {"projectNumber":"605186536816","projectId":"griz-sports","lifecycleState":"ACTIVE","name":"Griz sports","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-04-05T18:19:39.533194Z"}
+[info] 
+[info] === Serving from 'C:\Users\benne\OneDrive\Documents\GitHub\griz-sports'...
+[info] 
+[debug] [2025-04-09T06:09:47.154Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:47.154Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:47.154Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/griz-sports/sites 
+[debug] [2025-04-09T06:09:48.023Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/griz-sports/sites 200
+[debug] [2025-04-09T06:09:48.023Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/griz-sports/sites {"sites":[{"name":"projects/griz-sports/sites/griz-sports","defaultUrl":"https://griz-sports.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-04-09T06:09:48.023Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:48.023Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:48.023Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/griz-sports/webApps/-/config [none]
+[debug] [2025-04-09T06:09:48.510Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/griz-sports/webApps/-/config 200
+[debug] [2025-04-09T06:09:48.510Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/griz-sports/webApps/-/config {"projectId":"griz-sports","storageBucket":"griz-sports.firebasestorage.app","apiKey":"AIzaSyAEmDZWMdPuaKAUYZt0N6Wnrg1eTcBBAY8","authDomain":"griz-sports.firebaseapp.com","messagingSenderId":"605186536816"}
+[debug] [2025-04-09T06:09:48.513Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:48.513Z] Checked if tokens are valid: true, expires at: 1744181622579
+[debug] [2025-04-09T06:09:48.513Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/griz-sports [none]
+[debug] [2025-04-09T06:09:48.814Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/griz-sports 200
+[debug] [2025-04-09T06:09:48.814Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/griz-sports {"projectId":"griz-sports","projectNumber":"605186536816","displayName":"Griz sports","name":"projects/griz-sports","resources":{"hostingSite":"griz-sports"},"state":"ACTIVE","etag":"1_f8acfa85-95d8-4626-bf00-4bd1062502fd"}
+[info] i  hosting[griz-sports]: Serving hosting files from: ionic-griz-sports {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mionic-griz-sports\u001b[22m"}}
+[info] +  hosting[griz-sports]: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[info] i  hosting: ::1 - - [09/Apr/2025:06:09:50 +0000] "GET /__/firebase/init.js?useEmulator=true HTTP/1.1" 200 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [09/Apr/2025:06:09:50 +0000] \"GET /__/firebase/init.js?useEmulator=true HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36\""}}
