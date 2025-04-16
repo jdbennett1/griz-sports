@@ -17,13 +17,14 @@ const parkingPage: React.FC = () => {
 
       <IonContent className="fixed-background-park">
         <h2>Parking</h2>
-
-        <div className="parking-container">
+      <center>
+        <div> {/* I removed the Background div for the time being normally the className here would be parking-container */}
           
           {/* This will render the MapComponent */}
           <MapComponent />
           
         </div>
+      </center>
       </IonContent>
     </IonPage>
   );
