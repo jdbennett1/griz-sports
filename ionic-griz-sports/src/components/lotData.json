@@ -3,7 +3,9 @@
     "features": [
       {
         "type": "Feature",
-        "properties": {}, 
+        "properties": {
+          "lot_id": "E"
+        }, 
         "geometry": {
           "coordinates": [
             [
@@ -48,7 +50,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "U"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -155,7 +159,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "R"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -208,26 +214,16 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "Z"
+        },
         "geometry": {
           "coordinates": [
-            [
-              -113.98389611412941,
-              46.86490179909245
-            ],
+
             [
               -113.98407415611227,
               46.86489197694448
-            ]
-          ],
-          "type": "LineString"
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-          "coordinates": [
+            ],
             [
               -113.98390189227204,
               46.864900198296084
@@ -264,9 +260,12 @@
           "type": "LineString"
         }
       },
+      
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "T"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -288,16 +287,8 @@
             [
               -113.98015578907261,
               46.864197899335124
-            ]
-          ],
-          "type": "LineString"
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-          "coordinates": [
+            ],
+            
             [
               -113.98014697384167,
               46.8642000419905
@@ -352,7 +343,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "B"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -389,7 +382,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "F"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -468,9 +463,12 @@
           "type": "LineString"
         }
       },
+      
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "G"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -496,16 +494,7 @@
             [
               -113.98535521421005,
               46.85787340758051
-            ]
-          ],
-          "type": "LineString"
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-          "coordinates": [
+            ],
             [
               -113.98535116783093,
               46.857872420945796
@@ -564,7 +553,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "D"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -633,7 +624,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "C"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -690,7 +683,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "P"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -720,16 +715,15 @@
             [
               -113.98522923385174,
               46.86485284985085
-            ]
-          ],
-          "type": "LineString"
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-          "coordinates": [
+            ],
+            [
+              -113.98523013723369,
+              46.86485409437398
+            ],
+            [
+              -113.98532425105071,
+              46.86489684223935
+            ],
             [
               -113.98675260297277,
               46.86489684223935
@@ -738,10 +732,7 @@
               -113.98532425105071,
               46.86489684223935
             ],
-            [
-              -113.9853207925715,
-              46.86485900806838
-            ],
+
             [
               -113.98523013723369,
               46.86485409437398
@@ -750,9 +741,12 @@
           "type": "LineString"
         }
       },
+
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "Y"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -789,7 +783,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "W"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -834,7 +830,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "S"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -899,7 +897,9 @@
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "DB"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -954,13 +954,16 @@
               -113.99570392083564,
               46.84723407093844
             ]
+            
           ],
           "type": "LineString"
         }
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "lot_id": "SL"
+        },
         "geometry": {
           "coordinates": [
             [
@@ -1005,7 +1008,9 @@
       }, 
           {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+              "lot_id": "M"
+            },
             "geometry": {
               "coordinates": [
                 [
@@ -1034,7 +1039,9 @@
           },
           {
             "type": "Feature",  
-            "properties": {},
+            "properties": {
+              "lot_id": "M-1"
+            },
             "geometry": {
               "coordinates": [
                 [
