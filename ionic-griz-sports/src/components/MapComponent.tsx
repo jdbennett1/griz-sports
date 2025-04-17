@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import lotData from './lotData.json'; // Make sure this is the correct relative path
+import rawLotData from 'ionic-griz-sports/src/lotData.json'; // Import raw JSON
 
 interface GeoJsonFeature {
   type: 'Feature';
-  properties: Record<string, any>;
+  properties: {
+    lot_id?: string;
+    fillColor?: string;
+    [key: string]: any;
+  };
   geometry: {
-    type: 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon';
-    coordinates: any; // Adjust based on the specific geometry type
+    type: string;
+    coordinates: any;
   };
 }
 
@@ -21,75 +25,103 @@ const MapComponent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (mapContainer.current) {
+    if (!mapContainer.current) return;
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaGFpZGVuZGFuZSIsImEiOiJjbTZzNmdjZ3UwNHZyMnFwcGt5Y20yc3JvIn0.LbnhtWs_Bayf-yaZzpYByg';
+
+    const map = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-113.991, 46.860],
+      zoom: 14,
+    });
+
+    map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+
+    map.on('load', async () => {
       try {
-        // Set the Mapbox access token
-        mapboxgl.accessToken = 'pk.eyJ1IjoiaGFpZGVuZGFuZSIsImEiOiJjbTZzNmdjZ3UwNHZyMnFwcGt5Y20yc3JvIn0.LbnhtWs_Bayf-yaZzpYByg';
+        // ✅ Step 1: Fetch the vacancy data
+        const response = await fetch('/vacancy_data.txt');
+        const text = await response.text();
+        console.log('Raw vacancy data:\n', text); // Check contents
 
-        // Initialize the map
-        const map = new mapboxgl.Map({
-          container: mapContainer.current,
-          style: 'mapbox://styles/mapbox/streets-v11', // I liked this style better than the other options 
-          center: [-113.991, 46.860], // University of Montana Coordinates
-          zoom: 14,
+        // ✅ Step 2: Parse it into a map
+        const vacancyMap: Record<string, number | null> = {};
+        text.split('\n').forEach(line => {
+          const [rawId, val] = line.trim().split(':');
+          const lotId = rawId?.trim();
+          if (lotId) {
+            vacancyMap[lotId] = val === 'None' ? null : parseFloat(val);
+          }
         });
 
-        // Add navigation control
-        map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+        console.log('Parsed vacancyMap:', vacancyMap);
 
-        // Handle map load event
-        map.on('load', () => {
-          // Ensure the lotData is a valid GeoJSON object
-          const validatedLotData: GeoJsonFeatureCollection = {
-            type: 'FeatureCollection',
-            features: lotData.features.map((feature) => ({
-              ...feature,
-              type: 'Feature',
-              geometry: {
-                ...feature.geometry,
-                type: feature.geometry.type as 'Point' | 'LineString' | 'Polygon' | 'MultiPoint' | 'MultiLineString' | 'MultiPolygon', // Handles all types of geometry
-              },
-            })),
+        // ✅ Step 3: Process lot data and apply colors
+        const lotData = rawLotData as GeoJsonFeatureCollection;
+
+        const updatedFeatures = lotData.features.map((feature: GeoJsonFeature) => {
+          const rawLotId = feature.properties.lot_id;
+          const lotId = rawLotId?.trim(); // normalize
+          const vacancy = lotId ? vacancyMap[lotId] : null;
+
+          console.log(`Lot ${lotId} -> Vacancy: ${vacancy}`);
+
+          let fillColor = '#000000'; // Default color
+          if (typeof vacancy === 'number') {
+            if (vacancy > 0.85) fillColor = '#E74C3C';      // Red (high vacancy)
+            else if (vacancy > 0.6) fillColor = '#E67E22';   // Orange
+            else if (vacancy > 0.3) fillColor = '#F1C40F';   // Yellow
+            else fillColor = '#2ECC71';                      // Green (low vacancy)
+          }
+          
+          return {
+            ...feature,
+            properties: {
+              ...feature.properties,
+              fillColor,
+            },
           };
-
-          // Add the GeoJSON data source
-          map.addSource('parking-lots', {
-            type: 'geojson',
-            data: validatedLotData, // Use the validated GeoJSON
-          });
-
-          // Add a fill layer for polygons (for example parking lots)
-          map.addLayer({
-            id: 'parking-lots-fill',
-            type: 'fill',
-            source: 'parking-lots',
-            paint: {
-              'fill-color': '#088', // Color of the fill
-              'fill-opacity': 0.5,   // Transparency of the fill
-            },
-          });
-
-          // Add an outline layer for the polygons
-          map.addLayer({
-            id: 'parking-lots-outline',
-            type: 'line',
-            source: 'parking-lots',
-            paint: {
-              'line-color': '#000',  // Color of the outline
-              'line-width': 2,       // Line width of the outline
-            },
-          });
         });
 
-        return () => {
-          // Cleanup the map when the component unmounts
-          map.remove();
+        const validatedLotData: GeoJsonFeatureCollection = {
+          type: 'FeatureCollection',
+          features: updatedFeatures,
         };
+
+        // ✅ Step 4: Add GeoJSON source and layers
+        map.addSource('parking-lots', {
+          type: 'geojson',
+          data: validatedLotData as GeoJSON.FeatureCollection,
+
+        });
+
+        map.addLayer({
+          id: 'parking-lots-fill',
+          type: 'fill',
+          source: 'parking-lots',
+          paint: {
+            'fill-color': ['get', 'fillColor'],
+            'fill-opacity': 0.5,
+          },
+        });
+
+        map.addLayer({
+          id: 'parking-lots-outline',
+          type: 'line',
+          source: 'parking-lots',
+          paint: {
+            'line-color': '#000',
+            'line-width': 2,
+          },
+        });
       } catch (err) {
-        setError('Failed to load the map. Please check the console for errors.');
-        console.error('Error loading Mapbox:', err);
+        console.error('Error loading map or data:', err);
+        setError('Something went wrong while loading the map.');
       }
-    }
+    });
+
+    return () => map.remove();
   }, []);
 
   return (
