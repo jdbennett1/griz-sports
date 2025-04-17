@@ -13,17 +13,16 @@ interface Event {
 
 const EventContainer: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
-
+  
   React.useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const data = await loadPublicCalendarEvents(); // already JSON
+        const data = await loadPublicCalendarEvents(); // This returns the items array directly
         console.log("Fetched data:", data);
         console.log("Full data response:", data);
-
-
-        if (data.items && data.items.length > 0) {
-          const mappedEvents = data.items.map((item: any) => ({
+        
+        if (data && data.length > 0) {
+          const mappedEvents = data.map((item: any) => ({
             id: item.id,
             title: item.summary || 'No Title',
             time: item.start?.dateTime || item.start?.date || 'No Time',
@@ -35,13 +34,11 @@ const EventContainer: React.FC = () => {
         }
       } catch (error) {
         console.error('Error fetching events:', error);
-      };
-
-      fetchEvents();
+      }
     };
-
+    
+    fetchEvents();
   }, []);
-
 
   return (
     <div className='upcoming-events'>
