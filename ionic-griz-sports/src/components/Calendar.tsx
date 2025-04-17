@@ -12,6 +12,9 @@ setOptions({
 const Calendar: React.FC = () => {
   const [events, setEvents] = useState<MbscCalendarEvent[]>([]);
   const tooltipRef = useRef<HTMLDivElement | null>(null);
+  const [tooltipAnchor, setTooltipAnchor] = useState();
+  const [tooltipColor, setTooltipColor] = useState<string>('');
+
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -23,7 +26,7 @@ const Calendar: React.FC = () => {
         title: event.summary,
         color: "#70002e"
       }));
-      
+
 
       setEvents(formattedEvents);
     };
@@ -31,12 +34,14 @@ const Calendar: React.FC = () => {
     fetchEvents();
   }, []);
 
+
+
   const onEventHoverIn = (args: any) => {
     if (tooltipRef.current) {
       tooltipRef.current.innerHTML = `
-        <strong>${args.event.title}</strong><br>
-        ${new Date(args.event.start).toLocaleString()} - ${new Date(args.event.end).toLocaleString()}<br>
-        ${args.event.description || ''}
+        <strong>${args.event?.title || 'No Title'}</strong><br>
+        ${args.event?.start ? new Date(args.event.start).toLocaleString() : 'No Start Time'} - ${args.event?.end ? new Date(args.event.end).toLocaleString() : 'No End Time'}<br>
+        ${args.event?.description || 'No Description'}
       `;
       tooltipRef.current.style.left = `${args.domEvent.pageX + 20}px`;
       tooltipRef.current.style.top = `${args.domEvent.pageY + 20}px`;
@@ -62,14 +67,14 @@ const Calendar: React.FC = () => {
       <div
         ref={tooltipRef}
         style={{
-          position: "absolute",
+          position: "fixed",
           backgroundColor: "white",
           border: "1px solid gray",
           padding: "10px",
           borderRadius: "5px",
           display: "none",
           pointerEvents: "none",
-          zIndex: 1000,
+          zIndex: 10,
         }}
       />
     </div>
