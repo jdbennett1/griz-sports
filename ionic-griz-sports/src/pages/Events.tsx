@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import {
   IonPage,
@@ -22,6 +22,7 @@ interface Event {
 
 const EventsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const mapContainer = useRef<HTMLDivElement | null>(null);
   const location = useLocation<{ event?: Event }>();
 
   const event = location.state?.event;
@@ -45,9 +46,8 @@ const EventsPage: React.FC = () => {
             <h4 className="event-subheading">Location: {event.location}</h4>
             <h2>Parking</h2>
             <center>
-              <div> {/* I removed the Background div for the time being normally the className here would be parking-container */}
-
-                {/* This will render the MapComponent */}
+              <div className='map-container'>
+                <div className="map" ref={mapContainer} style={{ width: '100%', height: '100%' }}></div>
                 <MapComponent />
 
               </div>

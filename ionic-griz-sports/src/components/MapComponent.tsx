@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import rawLotData from 'ionic-griz-sports/src/lotData.json';
+import rawLotData from 'ionic-griz-sports/src/lotData.json'; // Import raw JSON
 
 interface GeoJsonFeature {
   type: 'Feature';
@@ -22,87 +22,80 @@ interface GeoJsonFeatureCollection {
 
 const MapComponent: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
-  const mapRef = useRef<mapboxgl.Map | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
-
-  const fetchAndUpdateVacancyData = async () => {
-    if (!mapRef.current) return;
-
-    try {
-      const response = await fetch('/vacancy_data.txt');
-      const text = await response.text();
-
-      const vacancyMap: Record<string, number | null> = {};
-      text.split('\n').forEach(line => {
-        const [rawId, val] = line.trim().split(':');
-        const lotId = rawId?.trim();
-        if (lotId) {
-          vacancyMap[lotId] = val === 'None' ? null : parseFloat(val);
-        }
-      });
-
-      const lotData = rawLotData as GeoJsonFeatureCollection;
-
-      const updatedFeatures = lotData.features.map((feature: GeoJsonFeature) => {
-        const lotId = feature.properties.lot_id?.trim();
-        const vacancy = lotId ? vacancyMap[lotId] : null;
-
-        let fillColor = '#000000';
-        if (typeof vacancy === 'number') {
-          if (vacancy > 0.85) fillColor = '#E74C3C';
-          else if (vacancy > 0.6) fillColor = '#E67E22';
-          else if (vacancy > 0.3) fillColor = '#F1C40F';
-          else fillColor = '#2ECC71';
-        }
-
-        return {
-          ...feature,
-          properties: {
-            ...feature.properties,
-            fillColor,
-          },
-        };
-      });
-
-      const updatedGeoJSON: GeoJsonFeatureCollection = {
-        type: 'FeatureCollection',
-        features: updatedFeatures,
-      };
-
-      const source = mapRef.current.getSource('parking-lots') as mapboxgl.GeoJSONSource;
-      if (source) {
-        source.setData(updatedGeoJSON as GeoJSON.FeatureCollection);
-      }
-    } catch (err) {
-      console.error('Error fetching vacancy data:', err);
-      setError('Failed to update parking lot data.');
-    }
-  };
 
   useEffect(() => {
     if (!mapContainer.current) return;
 
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+
+
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-113.991, 46.860],
-      zoom: 14,
+      center: [-113.9852647, 46.8621548],
+      zoom: 14.5,
     });
-
-    mapRef.current = map;
 
     map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
     map.on('load', async () => {
+      map.resize(); // Resize the map to fit the container
       try {
+        // ✅ Step 1: Fetch the vacancy data
+        const response = await fetch('/vacancy_data.txt');
+        const text = await response.text();
+        console.log('Raw vacancy data:\n', text); // Check contents
+
+        // ✅ Step 2: Parse it into a map
+        const vacancyMap: Record<string, number | null> = {};
+        text.split('\n').forEach(line => {
+          const [rawId, val] = line.trim().split(':');
+          const lotId = rawId?.trim();
+          if (lotId) {
+            vacancyMap[lotId] = val === 'None' ? null : parseFloat(val);
+          }
+        });
+
+        console.log('Parsed vacancyMap:', vacancyMap);
+
+        // ✅ Step 3: Process lot data and apply colors
+        const lotData = rawLotData as GeoJsonFeatureCollection;
+
+        const updatedFeatures = lotData.features.map((feature: GeoJsonFeature) => {
+          const rawLotId = feature.properties.lot_id;
+          const lotId = rawLotId?.trim(); // normalize
+          const vacancy = lotId ? vacancyMap[lotId] : null;
+
+          console.log(`Lot ${lotId} -> Vacancy: ${vacancy}`);
+
+          let fillColor = '#000000'; // Default color
+          if (typeof vacancy === 'number') {
+            if (vacancy > 0.85) fillColor = '#E74C3C';      // Red (high vacancy)
+            else if (vacancy > 0.6) fillColor = '#E67E22';   // Orange
+            else if (vacancy > 0.3) fillColor = '#F1C40F';   // Yellow
+            else fillColor = '#2ECC71';                      // Green (low vacancy)
+          }
+
+          return {
+            ...feature,
+            properties: {
+              ...feature.properties,
+              fillColor,
+            },
+          };
+        });
+
+        const validatedLotData: GeoJsonFeatureCollection = {
+          type: 'FeatureCollection',
+          features: updatedFeatures,
+        };
+
+        // ✅ Step 4: Add GeoJSON source and layers
         map.addSource('parking-lots', {
           type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [],
-          },
+          data: validatedLotData as GeoJSON.FeatureCollection,
+
         });
 
         map.addLayer({
@@ -113,6 +106,7 @@ const MapComponent: React.FC = () => {
             'fill-color': ['get', 'fillColor'],
             'fill-opacity': 0.5,
           },
+
         });
 
         map.addLayer({
@@ -124,90 +118,24 @@ const MapComponent: React.FC = () => {
             'line-width': 2,
           },
         });
-
-        await fetchAndUpdateVacancyData();
       } catch (err) {
         console.error('Error loading map or data:', err);
         setError('Something went wrong while loading the map.');
       }
     });
 
+
+
+
     return () => map.remove();
   }, []);
 
   return (
-    <div>
+    <div style={{ width: '100%', height: '100vh' }}>
       {error ? (
         <div style={{ color: 'red', textAlign: 'center', padding: '20px' }}>{error}</div>
       ) : (
-        <div style={{ position: 'relative' }}>
-          {/* Floating button panel */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              background: 'white',
-              padding: '10px',
-              borderRadius: '8px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-              zIndex: 10,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-            }}
-          >
-            <button
-              onClick={() => mapRef.current?.zoomIn()}
-              style={{
-                padding: '8px 12px',
-                borderRadius: '6px',
-                border: 'none',
-                backgroundColor: '#3498db',
-                color: 'white',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-              }}
-            >
-              Zoom In
-            </button>
-            <button
-              onClick={() => mapRef.current?.zoomOut()}
-              style={{
-                padding: '8px 12px',
-                borderRadius: '6px',
-                border: 'none',
-                backgroundColor: '#2980b9',
-                color: 'white',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-              }}
-            >
-              Zoom Out
-            </button>
-            <button
-              onClick={fetchAndUpdateVacancyData}
-              style={{
-                padding: '8px 12px',
-                borderRadius: '6px',
-                border: 'none',
-                backgroundColor: '#27ae60',
-                color: 'white',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-              }}
-            >
-              Fetch Lot Vacancy
-            </button>
-          </div>
-
-          {/* Map container */}
-          <div
-            ref={mapContainer}
-            id="map-container"
-            style={{ width: '100%', height: '600px', borderRadius: '8px', overflow: 'hidden' }}
-          />
-        </div>
+        <div ref={mapContainer} id="map-container" style={{ width: '650px', height: '550px' }} />
       )}
     </div>
   );
