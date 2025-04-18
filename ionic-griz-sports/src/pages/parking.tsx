@@ -12,14 +12,14 @@ import {
 import './parking.css';
 
 interface Event {
-  id: number;
+  id: string;
   title: string;
   time: string;
   location: string;
 }
 
 const parkingPage: React.FC = () => {
-  
+
   return (
     <IonPage>
       <IonHeader>
@@ -32,17 +32,17 @@ const parkingPage: React.FC = () => {
       </IonHeader>
 
       <IonContent className="fixed-background-park">
-        
-            <h2> Parking</h2>
-            
 
-            {/* Location Container Placeholder */}
-            <div className="parking-container">
-              <p>Location Container (Park API)</p>
-            </div>
-          
+        <h2> Parking</h2>
+
+
+        {/* Location Container Placeholder */}
+        <div className="parking-container">
+          <p>Location Container (Park API)</p>
+        </div>
+
         ) : (
-          
+
         )
       </IonContent>
     </IonPage>

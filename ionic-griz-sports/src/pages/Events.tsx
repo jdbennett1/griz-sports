@@ -11,9 +11,8 @@ import {
 } from '@ionic/react';
 import './Events.css';
 
-
 interface Event {
-  id: number;
+  id: string;
   title: string;
   time: string;
   location: string;
