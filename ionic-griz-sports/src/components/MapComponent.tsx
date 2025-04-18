@@ -27,7 +27,8 @@ const MapComponent: React.FC = () => {
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaGFpZGVuZGFuZSIsImEiOiJjbTZzNmdjZ3UwNHZyMnFwcGt5Y20yc3JvIn0.LbnhtWs_Bayf-yaZzpYByg';
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
