@@ -1,9 +1,16 @@
 import React from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton } from '@ionic/react';
 import './parking.css';
-import MapComponent from '../components/MapComponent'; // Adjust import path
+
+interface Event {
+  id: string;
+  title: string;
+  time: string;
+  location: string;
+}
 
 const parkingPage: React.FC = () => {
+
   return (
     <IonPage>
       <IonHeader>
@@ -16,15 +23,18 @@ const parkingPage: React.FC = () => {
       </IonHeader>
 
       <IonContent className="fixed-background-park">
-        <h2>Parking</h2>
-      <center>
-        <div> {/* I removed the Background div for the time being normally the className here would be parking-container */}
-          
-          {/* This will render the MapComponent */}
-          <MapComponent />
-          
+
+        <h2> Parking</h2>
+
+
+        {/* Location Container Placeholder */}
+        <div className="parking-container">
+          <p>Location Container (Park API)</p>
         </div>
-      </center>
+
+        ) : (
+
+        )
       </IonContent>
     </IonPage>
   );
