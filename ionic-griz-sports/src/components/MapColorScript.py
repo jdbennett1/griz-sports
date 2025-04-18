@@ -1,12 +1,17 @@
 import pyodbc
 import os
+from dotenv import load_dotenv
 
-# Database connection parameters
-server = 'griz-sports-server.database.windows.net'
-database = 'GrizSportsDB'
-username = 'EricFrazer44'
-password = 'Boomer4409!'
+# Load environment variables from the .env file
+load_dotenv()
+
+# Database connection parameters from .env
+server = os.getenv('DB_SERVER')
+database = os.getenv('DB_DATABASE')
+username = os.getenv('DB_USERNAME')
+password = os.getenv('DB_PASSWORD')
 driver = '{ODBC Driver 17 for SQL Server}'
+
 
 # Function to establish the database connection
 def establish_connection():
