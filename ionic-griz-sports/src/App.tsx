@@ -5,6 +5,8 @@ import Modal from './components/Modal';
 import Page from './pages/Page';
 import Home from './pages/Home';
 import Parking from './pages/parking';
+import EventsPage from './pages/Events';
+
 
 
 
@@ -60,7 +62,7 @@ const App: React.FC = () => {
             <Redirect to="/lg" />
           </Route>
           <Route path="/lg" exact={true}>
-            <Login/> {/* Your Modal component */}
+            <Login /> {/* Your Modal component */}
           </Route>
           <Route path="/home" exact={true}>
             <Home /> {/* Your Home component */}
@@ -68,33 +70,33 @@ const App: React.FC = () => {
           <Route path="/modal" exact={true}>
             <Modal /> {/* Your Modal component */}
           </Route>
-          
-          <Route path="/parking" exact={true}> <Parking/></Route>
-          
+
+          <Route path="/parking" exact={true}> <Parking /></Route>
+
           <Route path="/loc" exact={true}>
-            <Locations/> {/* Your Modal component */}
+            <Locations /> {/* Your Modal component */}
           </Route>
           <Route path="/shd" exact={true}>
-            <Schedules/> {/* Your Modal component */}
+            <Schedules /> {/* Your Modal component */}
           </Route>
-          
-          
-          <Route path="/events" exact={true}> <Events/></Route>
 
-          <Route path="/events/:id" exact={true}>
+
+          <Route path="/events" exact={true}> <Events /></Route>
+
+          <Route path="/events/:id" exact={true} component={EventsPage}>
             <Events />
           </Route>
 
 
 
-          
-         
-          
-         
-          
-          
-          
-          
+
+
+
+
+
+
+
+
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

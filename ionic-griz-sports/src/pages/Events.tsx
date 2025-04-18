@@ -10,9 +10,11 @@ import {
   IonButton
 } from '@ionic/react';
 import './Events.css';
+import './parking.css'; // Assuming you have a separate CSS file for parking styles
+import MapComponent from '../components/MapComponent';
 
 interface Event {
-  id: number;
+  id: string;
   title: string;
   time: string;
   location: string;
@@ -41,15 +43,22 @@ const EventsPage: React.FC = () => {
             <h2 className="event-title">{event.title}</h2>
             <h4 className="event-subheading">Time: {event.time}</h4>
             <h4 className="event-subheading">Location: {event.location}</h4>
+            <h2>Parking</h2>
+            <center>
+              <div> {/* I removed the Background div for the time being normally the className here would be parking-container */}
 
-            {/* 🚗 Parking Location Container Placeholder */}
-            <div className="parking-container">
-              <p>Location Container (Map API)</p>
-            </div>
+                {/* This will render the MapComponent */}
+                <MapComponent />
+
+              </div>
+            </center>
           </>
         ) : (
-          <p>Event not found. Try accessing this page from the home screen.</p>
+          <div className="event-not-found">
+            <h2>Event not found</h2>
+          </div>
         )}
+
       </IonContent>
     </IonPage>
   );
