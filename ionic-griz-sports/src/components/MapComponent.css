@@ -1,0 +1,4 @@
+#map-container .mapboxgl-popup {
+    z-index: 9999;
+    text-decoration-color: black !important;
+}
