@@ -1,13 +1,13 @@
 import React from 'react';
-import { 
-  IonPage, 
-  IonHeader, 
-  IonToolbar, 
-  IonTitle, 
-  IonContent, 
-  IonButtons, 
-  IonButton, 
-  IonRouterLink 
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonButtons,
+  IonButton,
+  IonRouterLink
 } from '@ionic/react';
 import './Home.css';
 import EventContainer from '../components/EventContainer';
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
             </IonButton>
             <IonButton routerLink="/parking">Parking
             </IonButton>
-            
+
           </IonButtons>
         </IonToolbar>
       </IonHeader>

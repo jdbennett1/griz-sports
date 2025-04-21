@@ -1,14 +1,5 @@
 import React from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonButtons,
-  IonButton
-} from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton } from '@ionic/react';
 import './parking.css';
 
 interface Event {
