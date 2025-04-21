@@ -64,7 +64,9 @@ Step 5: mobiscroll config react --trial
 
 Step 6: Select CSS
 
-Step 7: ionic serve
+Step 7: npm install mapbox-gl
+
+Step 8: ionic serve
 ```
 
 ### **🚀 Usage**
