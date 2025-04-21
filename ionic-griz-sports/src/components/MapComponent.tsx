@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import rawLotData from 'ionic-griz-sports/src/lotData.json'; // Import raw JSON
+import './MapComponent.css'
 
 interface GeoJsonFeature {
   type: 'Feature';
@@ -23,7 +24,6 @@ interface GeoJsonFeatureCollection {
 const MapComponent: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
     if (!mapContainer.current) return;
 
@@ -41,6 +41,7 @@ const MapComponent: React.FC = () => {
 
     map.on('load', async () => {
       map.resize(); // Resize the map to fit the container
+      console.log('Static test popup added')
       try {
         // ✅ Step 1: Fetch the vacancy data
         const response = await fetch('/vacancy_data.txt');
@@ -82,6 +83,7 @@ const MapComponent: React.FC = () => {
             properties: {
               ...feature.properties,
               fillColor,
+              vacancy,
             },
           };
         });
@@ -97,6 +99,8 @@ const MapComponent: React.FC = () => {
           data: validatedLotData as GeoJSON.FeatureCollection,
 
         });
+        console.log(validatedLotData)
+
 
         map.addLayer({
           id: 'parking-lots-fill',
@@ -107,7 +111,7 @@ const MapComponent: React.FC = () => {
             'fill-opacity': 0.5,
           },
 
-        });
+        }, 'waterway-label');
 
         map.addLayer({
           id: 'parking-lots-outline',
@@ -124,14 +128,65 @@ const MapComponent: React.FC = () => {
       }
     });
 
+    let popup: mapboxgl.Popup | null = null;
 
+    map.on('mousemove', 'parking-lots-fill', (e) => {
+      console.log('Mousemove event fired on parking-lots-fill');
+
+      if (!e.features || e.features.length === 0) return;
+
+      const feature = e.features[0];
+      const lotId = feature.properties?.lot_id || 'Unknown Lot ID';
+      const vacancy = feature.properties?.vacancy ?? 'Unknown';
+
+      console.log('Hovered feature:', feature);
+      if (popup) popup.remove(); // Remove existing popup
+
+      const coordinates = (feature.geometry.type === 'Polygon')
+        ? feature.geometry.coordinates[0][0] as [number, number] // Use the first coordinate of the first polygon
+        : [e.lngLat.lng, e.lngLat.lat] as [number, number]; // Fallback to the event coordinates
+
+      const vac = typeof vacancy === 'number' ? vacancy * 100 : 0; // Convert to percentage
+      const acc = 100 - vac
+
+      const formattedVacancy = typeof vacancy === 'number' ? `${(acc).toFixed(0)}%` : 'Unknown';
+      const html = `
+        <div style="text-align: center; font-size: 14px; color: black;">
+      <strong>Lot ID:</strong> ${lotId}<br/>
+      <strong>Vacancy:</strong> ${formattedVacancy}
+        </div>
+      `;
+      console.log('Popup HTML:', html);
+
+      // Remove any existing popup
+      if (popup) {
+        popup.remove();
+      }
+
+      popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 15,
+      })
+        .setLngLat(coordinates)
+        .setHTML(html)
+        .addTo(map);
+      console.log('Popup added:', e.lngLat);
+    });
+
+    map.on('mouseleave', 'parking-lots-fill', () => {
+      if (popup) {
+        popup.remove();
+        popup = null;
+      }
+    });
 
 
     return () => map.remove();
   }, []);
 
   return (
-    <div style={{ width: '100%', height: '100vh' }}>
+    <div style={{ width: '100%', height: '100%' }}>
       {error ? (
         <div style={{ color: 'red', textAlign: 'center', padding: '20px' }}>{error}</div>
       ) : (
