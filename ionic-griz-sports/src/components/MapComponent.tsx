@@ -186,7 +186,7 @@ const MapComponent: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div style={{ width: '100%', height: '50%' }}>
       {error ? (
         <div style={{ color: 'red', textAlign: 'center', padding: '20px' }}>{error}</div>
       ) : (
