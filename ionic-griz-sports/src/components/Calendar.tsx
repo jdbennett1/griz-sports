@@ -3,26 +3,39 @@ import { useHistory } from 'react-router-dom';
 import { Eventcalendar, MbscCalendarEvent, setOptions } from "@mobiscroll/react";
 import { loadPublicCalendarEvents } from "../services/googleCalendarService";
 import "@mobiscroll/react/dist/css/mobiscroll.min.css";
-import "./Calendar.css"; // Make sure this exists or remove it
-import { s } from "vite/dist/node/types.d-aGj9QkWt";
+import "./Calendar.css";
+
 
 setOptions({
   theme: "ios",
   themeVariant: "light",
 });
 
+// Extended type to include sport
+interface MyCalendarEvent extends MbscCalendarEvent {
+  sport: string;
+}
+
 const Calendar: React.FC = () => {
-  const [events, setEvents] = useState<MbscCalendarEvent[]>([]);
+  const [events, setEvents] = useState<MyCalendarEvent[]>([]);
+  const [selectedSport, setSelectedSport] = useState<string>("All");
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const [tooltipAnchor, setTooltipAnchor] = useState();
   const [tooltipColor, setTooltipColor] = useState<string>('');
 
+  // Helper function to extract sport from summary
+  const getSportType = (summary: string): string => {
+    const match = summary.match(/Griz (\w+)/i);
+    return match ? match[1] : 'Unknown';
+  };
 
   useEffect(() => {
     const fetchEvents = async () => {
       const fetchedEvents = await loadPublicCalendarEvents();
+      console.log("Fetched raw events:", fetchedEvents); // Add this line
 
-      const formattedEvents: MbscCalendarEvent[] = fetchedEvents.map((event: any) => ({
+
+      const formattedEvents: MyCalendarEvent[] = fetchedEvents.map((event: any) => ({
         id: event.id,
         start: new Date(event.start.dateTime || event.start.date),
         end: new Date(event.end.dateTime || event.end.date),
@@ -30,9 +43,9 @@ const Calendar: React.FC = () => {
         location: (() => {
           const description = event.description || '';
           const locationMatch = typeof description === 'string' ? description.match(/Location:\s*(.*)/i) : null;
-          const location = locationMatch ? locationMatch[1] : 'No Location';
-          return location;
+          return locationMatch ? locationMatch[1] : 'No Location';
         })(),
+        sport: getSportType(event.summary), // Extract sport type from summary
         color: "#70002e"
       }));
 
@@ -43,7 +56,11 @@ const Calendar: React.FC = () => {
     fetchEvents();
   }, []);
 
+  const uniqueSports = Array.from(new Set(events.map(e => e.sport))).sort();
 
+  const filteredEvents = selectedSport === "All"
+    ? events
+    : events.filter(e => e.sport === selectedSport);
 
   const onEventHoverIn = (args: any) => {
     if (tooltipRef.current) {
@@ -109,9 +126,21 @@ const Calendar: React.FC = () => {
 
   return (
     <div>
-      <h1>Upcoming Events</h1>
+      <div className="event-title">Event Calendar</div>
+      <label htmlFor="sport-filter" style={{ marginRight: "10px" }}>Filter by sport:</label>
+      <select
+        id="sport-filter"
+        value={selectedSport}
+        onChange={(e) => setSelectedSport(e.target.value)}
+      >
+        <option value="All">All Sports</option>
+        {uniqueSports.map(sport => (
+          <option key={sport} value={sport}>{sport}</option>
+        ))}
+      </select><br></br>
+      <br></br>
       <Eventcalendar
-        data={events}
+        data={filteredEvents}
         view={{ calendar: { type: "month" } }}
         onEventHoverIn={onEventHoverIn}
         onEventHoverOut={onEventHoverOut}

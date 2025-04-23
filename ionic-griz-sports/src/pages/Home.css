@@ -93,7 +93,7 @@ ion-buttons {
 }
   
   .upcoming-events {
-    background: rgba(0, 0, 0, 0.6); 
+    background: rgba(0, 0, 0, 0.4); 
     width: 100%; 
     max-width: 1000px; 
     border-radius: 15px;
@@ -110,6 +110,7 @@ ion-buttons {
     font-family: 'VarsityTeam';
     margin: 0 auto;
   }
+
   
   .bottom-section {
     display: flex;

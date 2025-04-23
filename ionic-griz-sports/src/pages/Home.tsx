@@ -12,7 +12,7 @@ import {
 import './Home.css';
 import EventContainer from '../components/EventContainer';
 import Calendar from '../components/Calendar';
-import SearchSortContainer from '../components/SearchSortContainer';
+
 
 
 const Home: React.FC = () => {
@@ -46,9 +46,6 @@ const Home: React.FC = () => {
               <Calendar />
             </div>
 
-            <div className="search-sort">
-              <SearchSortContainer />
-            </div>
           </div>
         </div>
       </IonContent>
